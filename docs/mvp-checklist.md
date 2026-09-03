@@ -7,9 +7,9 @@ stretch goals without breaking the core app.
 ## Week 1 — Foundation & Accounts
 
 ### Project setup
-- [ ] Create Next.js app
-- [ ] Create Supabase project (dashboard, get API URL + anon key)
-- [ ] Add Supabase client to the project, store keys in `.env.local`
+- [x] Create Next.js app
+- [x] Create Supabase project (dashboard, get API URL + anon key)
+- [x] Add Supabase client to the project, store keys in `.env.local`
 - [ ] Confirm the app can connect to Supabase (simple test query or console log)
 
 ### Database schema (in Supabase dashboard)
