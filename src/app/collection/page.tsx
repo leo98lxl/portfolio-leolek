@@ -2,6 +2,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { createClient } from '../utils/supabase/server';
 import { logout } from '../account/actions';
+import Link from 'next/link';
 
 export default async function CollectionPage() {
   const cookieStore = await cookies();
@@ -39,6 +40,8 @@ export default async function CollectionPage() {
           <p className="text-lg">Your shelf is currently empty.</p>
           <p className="text-sm mt-1">Items you add will appear here.</p>
         </div>
+
+        <Link href="/collection/add">Add</Link>
       </main>
     </div>
   );

@@ -27,7 +27,7 @@ stretch goals without breaking the core app.
 - [X] Add log-out action
 - [X] Add session check so logged-out users can't see the shelf page
       (redirect to welcome/login)
-- [ ] Test: create two separate test accounts, confirm each only ever sees
+- [X] Test: create two separate test accounts, confirm each only ever sees
       its own (empty) shelf
 
 **End of Week 1 checkpoint:** you can sign up, log in, log out, and land on
@@ -36,7 +36,7 @@ an empty shelf page tied to your account. No media items yet — that's fine.
 ## Week 2 — Core Shelf Functionality
 
 ### Manual add (build the data flow before the API search)
-- [ ] Build a basic "add item" form with plain text fields (title, author,
+- [X] Build a basic "add item" form with plain text fields (title, author,
       year) — no API yet
 - [ ] Save submitted item to Supabase, linked to the logged-in user
 - [ ] Confirm it appears on the shelf after adding
