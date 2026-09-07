@@ -7,25 +7,25 @@ stretch goals without breaking the core app.
 ## Week 1 — Foundation & Accounts
 
 ### Project setup
-- [ ] Create Next.js app
-- [ ] Create Supabase project (dashboard, get API URL + anon key)
-- [ ] Add Supabase client to the project, store keys in `.env.local`
-- [ ] Confirm the app can connect to Supabase (simple test query or console log)
+- [X] Create Next.js app
+- [X] Create Supabase project (dashboard, get API URL + anon key)
+- [X] Add Supabase client to the project, store keys in `.env.local`
+- [X] Confirm the app can connect to Supabase (simple test query or console log)
 
 ### Database schema (in Supabase dashboard)
-- [ ] Create `media_items` table with columns: id, user_id, title, author,
+- [X] Create `media_items` table with columns: id, user_id, title, author,
       year, cover_url, status (unread/read etc.), rating, review,
       date_added
-- [ ] Enable Row Level Security (RLS) so users can only read/write their own
+- [X] Enable Row Level Security (RLS) so users can only read/write their own
       rows — Supabase-specific and important to set up early, not bolted on
       later
 
 ### Accounts (Supabase Auth)
-- [ ] Build sign-up page (email + password form)
-- [ ] Build log-in page
-- [ ] Wire up Supabase Auth sign-up / sign-in calls
-- [ ] Add log-out action
-- [ ] Add session check so logged-out users can't see the shelf page
+- [X] Build sign-up page (email + password form)
+- [X] Build log-in page
+- [X] Wire up Supabase Auth sign-up / sign-in calls
+- [X] Add log-out action
+- [X] Add session check so logged-out users can't see the shelf page
       (redirect to welcome/login)
 - [ ] Test: create two separate test accounts, confirm each only ever sees
       its own (empty) shelf
