@@ -10,9 +10,15 @@ export default function AddItemForm() {
     return (
         <div>
             {state?.error && (
-                <p style={{ color: 'red' }} role="alert">
+                <p style={{ color: "red" }} role="alert">
                     {state.error}
                 </p>
+            )}
+
+            {state?.success && (
+            <p style={{ color: "green" }} role="status">
+                {state.success}
+            </p>
             )}
 
             <form action={formAction}>

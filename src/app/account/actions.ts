@@ -12,6 +12,7 @@ export type AuthState = {
 
 export type AddItemState = {
   error?: string;
+  success?: string;
 } | null;
 
 /* Log in */
@@ -33,7 +34,7 @@ export async function login(_prevState: AuthState, formData: FormData): Promise<
   });
 
   if (error) {
-    return { error: error.message };
+    return { error: error.message ?? "Failed to log in." };
   }
 
   revalidatePath("/", "layout");
@@ -75,7 +76,7 @@ export async function signup(_prevState: AuthState, formData: FormData): Promise
   });
 
   if (error) {
-    return { error: error.message };
+    return { error: error.message ?? "Failed to sign up." };
   }
 
   // If email confirmation is disabled in Supabase, a session is returned immediately
@@ -161,10 +162,12 @@ export async function addItem(_prevState: AddItemState, formData: FormData): Pro
     review: review || null,
   });
 
-  if (error) return { error: "Failed to add item." };
+  if (error) return { error: error.message ?? "Failed to add item." };
 
   revalidatePath("/collection");
   redirect("/collection");
-}
 
-/* End of Add to Collection */
+  return { success: "Item was successfully added to your collection!" };
+  
+  /* End of Add to Collection */
+}
