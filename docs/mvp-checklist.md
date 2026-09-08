@@ -38,8 +38,8 @@ an empty shelf page tied to your account. No media items yet — that's fine.
 ### Manual add (build the data flow before the API search)
 - [X] Build a basic "add item" form with plain text fields (title, author,
       year) — no API yet
-- [ ] Save submitted item to Supabase, linked to the logged-in user
-- [ ] Confirm it appears on the shelf after adding
+- [X] Save submitted item to Supabase, linked to the logged-in user
+- [X] Confirm it appears on the shelf after adding
 
 ### Shelf display
 - [ ] Fetch and display all of the logged-in user's items on the shelf
