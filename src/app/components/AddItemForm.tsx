@@ -15,15 +15,9 @@ export default function AddItemForm() {
                 </p>
             )}
 
-            {state?.success && (
-            <p style={{ color: "green" }} role="status">
-                {state.success}
-            </p>
-            )}
-
             <form action={formAction}>
                 <label htmlFor="search">Search</label>
-                <input type="text" id="search" name="search" placeholder="Search for title, author, year..." autoFocus />
+                <input /* onChange={} when API is added */ type="text" id="search" name="search" placeholder="Search for title, author, year..." autoFocus />
 
                 <label htmlFor="title">Title</label>
                 <input type="text" id="title" name="title" placeholder="Title of book" required />
@@ -32,7 +26,7 @@ export default function AddItemForm() {
                 <input type="text" id="author" name="author" placeholder="Author of book" required />
 
                 <label htmlFor="year">Release year</label>
-                <input type="number" id="year" name="year" min={1900} max={2026} placeholder="YYYY" />
+                <input type="number" id="year" name="year" min={1900} max={new Date().getFullYear()} placeholder="YYYY" />
 
                 <fieldset>
                     <legend>Status (Optional)</legend>
@@ -49,8 +43,8 @@ export default function AddItemForm() {
                 <textarea id="review" name="review" minLength={0} maxLength={200} placeholder="Write a review (up to 200 characters)">
                 </textarea>
 
-                <button type="submit" disabled={isPending}>{isPending ? "Adding..." : "Add to Collection"}</button>
-                <Link href="/collection">Cancel</Link>
+                <button type="submit" aria-disabled={isPending}>{isPending ? "Adding..." : "Add to Collection"}</button>
+                <Link className="ml-4" href="/collection">Cancel</Link>
             </form>
         </div>
     )

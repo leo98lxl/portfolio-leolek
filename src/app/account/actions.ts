@@ -12,7 +12,6 @@ export type AuthState = {
 
 export type AddItemState = {
   error?: string;
-  success?: string;
 } | null;
 
 /* Log in */
@@ -167,7 +166,5 @@ export async function addItem(_prevState: AddItemState, formData: FormData): Pro
   revalidatePath("/collection");
   redirect("/collection");
 
-  return { success: "Item was successfully added to your collection!" };
-  
   /* End of Add to Collection */
 }
