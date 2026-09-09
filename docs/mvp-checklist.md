@@ -88,3 +88,4 @@ gets submitted/demoed.
 - [ ] Barcode scanning on mobile
 - [ ] Edit/delete existing items
 - [ ] Filtering by status/rating/media type
+- [ ] Create sorting reset button: same pattern like the sorting components but use params.delete instead

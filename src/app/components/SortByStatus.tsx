@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type StatusProps = { value: string; name: string };
@@ -21,17 +22,16 @@ export default function SortByStatus() {
         router.replace(`${pathname}?${params.toString()}`);
     };
 
+    const current = searchParams.get("status") ?? "";
+
     return (
         <div>
-            <form action="">
-                <select onChange={(e) => handleSortByStatus(e.target.value)} defaultValue=
-                {searchParams.get("status")?.toString()} name="" id="">
-                    <option value={""} defaultValue={""}>
-                        Status:
-                    </option>
-                    {Status.map((status: StatusProps, index: number) => (<option key={index} value={status.value}>{status.name}</option>))}
-                </select>
-            </form>
+            <select value={current} onChange={(e) => handleSortByStatus(e.target.value)}>
+                <option value={""} disabled>
+                    Status:
+                </option>
+                {Status.map((status: StatusProps, index: number) => (<option key={index} value={status.value}>{status.name}</option>))}
+            </select>
         </div>
     )
 }

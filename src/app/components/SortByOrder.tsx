@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type OrderByProps = { value: string; name: string };
@@ -25,20 +26,19 @@ export default function SortByOrder() {
         params.set("order_by", orderBy);
         router.replace(`${pathname}?${params.toString()}`);
     };
+    
+    const current = searchParams.get("order_by") ?? ""; 
 
     return (
         <div>
-            <form action="">
-                <select onChange={(e) => handleSortByOrder(e.target.value)} defaultValue=
-                {searchParams.get("order_by")?.toString()} name="" id="">
-                    <option value={""} defaultValue={""}>
-                        Order by:
-                    </option>
-                    {OrderBy.map((orderBy: OrderByProps, index: number) => (<option key={index} value={orderBy.value}>
-                        {orderBy.name}
-                    </option>))}
-                </select>
-            </form>
+            <select value={current} onChange={(e) => handleSortByOrder(e.target.value)}>
+                <option value={""} disabled>
+                    Order by:
+                </option>
+                {OrderBy.map((orderBy: OrderByProps, index: number) => (<option key={index} value={orderBy.value}>
+                    {orderBy.name}
+                </option>))}
+            </select>
         </div>
     )
 }

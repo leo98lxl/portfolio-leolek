@@ -11,7 +11,7 @@ import SortByStatus from '../components/SortByStatus';
 type CollectionPageProps = {
   searchParams: Promise<{
     order_by?: string;
-    sort?: string;
+    direction?: string;
     status?: string;
   }>;
 };
@@ -27,6 +27,7 @@ const sortableFields = [
 ] as const;
 const validStatuses = ['read', 'unread'] as const;
 
+/* NOTE: Runs on the server */
 export default async function CollectionPage(
   {searchParams,}: CollectionPageProps) {
 
@@ -45,7 +46,7 @@ export default async function CollectionPage(
   const orderBy = sortableFields.includes(params.order_by as typeof sortableFields[number])
     ? params.order_by as typeof sortableFields[number]
     : 'date_added';
-  const ascending = params.sort === 'asc';
+  const ascending = params.direction === 'asc';
   const status = validStatuses.includes(params.status as typeof validStatuses[number])
     ? params.status
     : null;
@@ -64,6 +65,14 @@ export default async function CollectionPage(
   const collectionItems = items ?? [];
   const shelfCapacity = 18;
   const emptySlotCount = Math.max(0, shelfCapacity - collectionItems.length - 1);
+
+  if (error) return
+    <div>
+      <p className="text-red-600" role="alert">
+        We could not load your collection. Please try again.
+      </p>
+      <Link href="/collection">Retry</Link>
+    </div>
 
   return (
     <div className="min-h-screen p-8 max-w-4xl mx-auto">
@@ -89,12 +98,7 @@ export default async function CollectionPage(
           <SortByDirection />
         </div>
 
-        {error ? (
-          <p className="text-red-600" role="alert">
-            We could not load your collection. Please try again.
-          </p>
-        ) : (
-          <ul className="grid gap-y-4 sm:grid-cols-6 grid-rows-3 border-4 border-gray-300">
+          <ul className="grid gap-y-4 sm:grid-cols-6 auto-rows-min border-4 border-gray-300">
             {collectionItems.map((item) => (
               <li key={item.id} className="min-h-40 border border-gray-200 p-4">
                 <h2 className="font-semibold">{item.title}</h2>
@@ -128,7 +132,6 @@ export default async function CollectionPage(
               />
             ))}
           </ul>
-        )}
       </main>
     </div>
   );
