@@ -9,7 +9,7 @@ const SortDirection = [
     { value: "dsc", name: "Descending" },
 ];
 
-export default function SortByType() {
+export default function SortByDirection() {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const router = useRouter();

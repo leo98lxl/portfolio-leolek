@@ -1,9 +1,12 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { createClient } from '../utils/supabase/server';
 import { logout } from '../account/actions';
-import Link from 'next/link';
+import SortByOrder from '../components/SortByOrder';
+import SortByStatus from '../components/SortByStatus';
+import SortByDirection from '../components/SortDirection';
 
 export default async function CollectionPage() {
   const cookieStore = await cookies();

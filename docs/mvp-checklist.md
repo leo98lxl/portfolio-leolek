@@ -42,9 +42,9 @@ an empty shelf page tied to your account. No media items yet — that's fine.
 - [X] Confirm it appears on the shelf after adding
 
 ### Shelf display
-- [ ] Fetch and display all of the logged-in user's items on the shelf
-- [ ] Build the empty-slot grid layout (grayscale placeholders)
-- [ ] Filled slots show item info at minimum (title, cover if available)
+- [X] Fetch and display all of the logged-in user's items on the shelf
+- [x] Build the empty-slot grid layout (grayscale placeholders)
+- [X] Filled slots show item info at minimum (title, cover if available)
 - [ ] Sorting controls: by name, by year, by date added
 
 ### Open Library search integration

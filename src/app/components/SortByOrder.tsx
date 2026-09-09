@@ -8,6 +8,7 @@ const OrderBy = [
     { value: "title", name: "Title" },
     { value: "author", name: "Author" },
     { value: "year", name: "Year" },
+    { value: "date_added", name: "Date added"},
     { value: "status", name: "Status" },
     { value: "rating", name: "Rating" },
     { value: "review", name: "Review" },
