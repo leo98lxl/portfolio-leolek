@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { createClient } from '../utils/supabase/server';
@@ -22,12 +23,15 @@ export default async function CollectionPage() {
     .order('date_added', { ascending: false });
 
   const displayName = user.user_metadata?.name || user.email;
+  const collectionItems = items ?? [];
+  const shelfCapacity = 18;
+  const emptySlotCount = Math.max(0, shelfCapacity - collectionItems.length - 1);
 
   return (
     <div className="min-h-screen p-8 max-w-4xl mx-auto">
       <header className="flex justify-between items-center pb-6 border-b border-gray-200">
         <div>
-          <h1 className="text-3xl font-bold">Media Shelf</h1>
+          <h1 className="text-3xl font-bold">Your Media Shelf</h1>
           <p className="text-sm text-gray-600">Logged in as {displayName}</p>
         </div>
         <form action={logout}>
@@ -45,15 +49,10 @@ export default async function CollectionPage() {
           <p className="text-red-600" role="alert">
             We could not load your collection. Please try again.
           </p>
-        ) : items.length === 0 ? (
-          <div className="p-8 border-2 border-dashed border-gray-300 rounded-lg text-center text-gray-500">
-            <p className="text-lg">Your shelf is currently empty.</p>
-            <p className="text-sm mt-1">Items you add will appear here.</p>
-          </div>
         ) : (
-          <ul className="grid gap-4 sm:grid-cols-6 grid-rows-3 border-4 border-gray-300">
-            {items.map((item) => (
-              <li key={item.id} className="border border-gray-200 p-4">
+          <ul className="grid gap-y-4 sm:grid-cols-6 grid-rows-3 border-4 border-gray-300">
+            {collectionItems.map((item) => (
+              <li key={item.id} className="min-h-40 border border-gray-200 p-4">
                 <h2 className="font-semibold">{item.title}</h2>
                 <p className="text-sm text-gray-600">{item.author}</p>
                 {item.year && <p className="text-sm text-gray-600">{item.year}</p>}
@@ -62,9 +61,28 @@ export default async function CollectionPage() {
                 {item.review && <p className="text-sm mt-2">{item.review}</p>}
               </li>
             ))}
-            <li className="border border-dashed border-gray-300 p-4 hover:bg-blue-400 hover:cursor-pointer">
-              <Link className="block" href="/collection/add">Add item</Link>
+            <li className="min-h-40 border border-dashed border-gray-300 hover:bg-blue-400">
+              <Link
+                className="flex h-full min-h-40 w-full items-center justify-center p-4"
+                href="/collection/add"
+                aria-label="Add item to collection"
+              >
+              <Image
+                className="dark:invert"
+                src="/plus.svg"
+                alt="Plus sign for adding items"
+                width={80}
+                height={80}
+              />
+              </Link>
             </li>
+            {Array.from({ length: emptySlotCount }, (_, index) => (
+              <li
+                key={`empty-slot-${index}`}
+                className="min-h-40 border border-dashed border-gray-200"
+                aria-hidden="true"
+              />
+            ))}
           </ul>
         )}
       </main>
