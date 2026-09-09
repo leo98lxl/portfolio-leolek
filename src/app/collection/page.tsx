@@ -51,9 +51,9 @@ export default async function CollectionPage() {
             <p className="text-sm mt-1">Items you add will appear here.</p>
           </div>
         ) : (
-          <ul className="grid gap-4 sm:grid-cols-2">
+          <ul className="grid gap-4 sm:grid-cols-6 grid-rows-3 border-4 border-gray-300">
             {items.map((item) => (
-              <li key={item.id} className="border border-gray-200 rounded-lg p-4">
+              <li key={item.id} className="border border-gray-200 p-4">
                 <h2 className="font-semibold">{item.title}</h2>
                 <p className="text-sm text-gray-600">{item.author}</p>
                 {item.year && <p className="text-sm text-gray-600">{item.year}</p>}
@@ -62,10 +62,11 @@ export default async function CollectionPage() {
                 {item.review && <p className="text-sm mt-2">{item.review}</p>}
               </li>
             ))}
+            <li className="border border-dashed border-gray-300 p-4 hover:bg-blue-400 hover:cursor-pointer">
+              <Link className="block" href="/collection/add">Add item</Link>
+            </li>
           </ul>
         )}
-
-        <Link className="ml-4" href="/collection/add">Add item</Link>
       </main>
     </div>
   );
