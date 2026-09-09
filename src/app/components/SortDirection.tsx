@@ -24,7 +24,7 @@ export default function SortByType() {
     return (
         <div>
             <form action="">
-                <select onChange={(e) => handleSortDirection(e.target.value)} defaultValue={searchParams.get("type")?.toString()} 
+                <select onChange={(e) => handleSortDirection(e.target.value)} defaultValue={searchParams.get("sort")?.toString()} 
                 name="" id="">
                     <option value={""} defaultValue={""}>
                         Sort:
