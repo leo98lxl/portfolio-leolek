@@ -45,7 +45,7 @@ an empty shelf page tied to your account. No media items yet — that's fine.
 - [X] Fetch and display all of the logged-in user's items on the shelf
 - [x] Build the empty-slot grid layout (grayscale placeholders)
 - [X] Filled slots show item info at minimum (title, cover if available)
-- [ ] Sorting controls: by name, by year, by date added
+- [X] Sorting controls: by name, by year, by date added
 
 ### Open Library search integration
 - [ ] Replace/extend the manual form with a search-as-you-type or search

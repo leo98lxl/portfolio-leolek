@@ -1,16 +1,38 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 import { createClient } from '../utils/supabase/server';
 import { logout } from '../account/actions';
+import { redirect } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
+import SortByDirection from '../components/SortByDirection';
 import SortByOrder from '../components/SortByOrder';
 import SortByStatus from '../components/SortByStatus';
-import SortByDirection from '../components/SortDirection';
 
-export default async function CollectionPage() {
+type CollectionPageProps = {
+  searchParams: Promise<{
+    order_by?: string;
+    sort?: string;
+    status?: string;
+  }>;
+};
+
+const sortableFields = [
+  'title',
+  'author',
+  'year',
+  'date_added',
+  'status',
+  'rating',
+  'review',
+] as const;
+const validStatuses = ['read', 'unread'] as const;
+
+export default async function CollectionPage(
+  {searchParams,}: CollectionPageProps) {
+
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
+  const params = await searchParams;
 
   const {
     data: { user },
@@ -20,10 +42,23 @@ export default async function CollectionPage() {
     redirect('/account/log-in');
   }
 
-  const { data: items, error } = await supabase
+  const orderBy = sortableFields.includes(params.order_by as typeof sortableFields[number])
+    ? params.order_by as typeof sortableFields[number]
+    : 'date_added';
+  const ascending = params.sort === 'asc';
+  const status = validStatuses.includes(params.status as typeof validStatuses[number])
+    ? params.status
+    : null;
+
+  let itemsQuery = supabase
     .from('media_items')
-    .select('id, title, author, year, status, rating, review, date_added')
-    .order('date_added', { ascending: false });
+    .select('id, title, author, year, status, rating, review, date_added');
+
+  if (status) {
+    itemsQuery = itemsQuery.eq('status', status);
+  }
+
+  const { data: items, error } = await itemsQuery.order(orderBy, { ascending });
 
   const displayName = user.user_metadata?.name || user.email;
   const collectionItems = items ?? [];
@@ -48,6 +83,12 @@ export default async function CollectionPage() {
       </header>
 
       <main className="mt-8">
+        <div>
+          <SortByOrder />
+          <SortByStatus />
+          <SortByDirection />
+        </div>
+
         {error ? (
           <p className="text-red-600" role="alert">
             We could not load your collection. Please try again.
