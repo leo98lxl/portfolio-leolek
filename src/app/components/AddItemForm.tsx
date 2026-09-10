@@ -6,6 +6,17 @@ import { SearchResult } from "@/app/types";
 import { addItem } from "@/app/account/actions";
 import { ChangeEvent, useActionState, useEffect, useState } from "react";
 
+interface OpenLibraryDoc {
+    title: string;
+    author_name?: string[];
+    first_publish_year?: number;
+    key: string;
+}
+
+interface OpenLibraryResponse {
+    docs: OpenLibraryDoc[];
+}
+
 export default function AddItemForm() {
     const [state, formAction, isPending] = useActionState(addItem, null);
     const [searchQuery, setSearchQuery] = useState("");
@@ -28,20 +39,20 @@ export default function AddItemForm() {
     
     .then((res) => {
         if (!res.ok) throw new Error (`Error ${res.status}`);
-        return res.json();
+        return res.json() as Promise<OpenLibraryResponse>;
     })
-    .then((data => {
-        const results: SearchResult[] = data.docs.map((doc: any) => ({
-            title: doc.title,
-            author: doc.author_name || [],
-            first_publish_year: doc.first_publish_year,
-            key: doc.key,
+    .then((data) => {
+        const results: SearchResult[] = data.docs.map((doc) => ({
+          title: doc.title,
+          author_name: doc.author_name ?? [],
+          first_publish_year: doc.first_publish_year,
+          key: doc.key,
         }));
         setSearchResults(results);
     })
     .catch((err) => {
         console.error(err);
-        setSearchError(err.message);
+        setSearchError(err instanceof Error ? err.message : String(err));
         setSearchResults([]);
     })
     .finally(() => setIsSearching(false));
@@ -51,10 +62,14 @@ export default function AddItemForm() {
         setSearchQuery(e.target.value);
 
     const handleSelect = (result: SearchResult) => {
-        (document.getElementById("title") as HTMLInputElement).value = result.title;
-        (document.getElementById("author") as HTMLInputElement).value = result.author_name.join(", ");
-        if (result.first_publish_year) {
-            (document.getElementById("year") as HTMLInputElement).value = String(result.first_publish_year);
+        const inputTitle = document.getElementById("title") as HTMLInputElement;
+        const inputAuthor = document.getElementById("author") as HTMLInputElement;
+        const inputYear = document.getElementById("year") as HTMLInputElement;
+
+        if (inputTitle) inputTitle.value = result.title;
+        if (inputAuthor) inputAuthor.value = result.author_name.join(", ");
+        if (inputYear && result.first_publish_year) {
+            inputYear.value = String(result.first_publish_year);
         }
         setSearchResults([]);
         setSearchQuery(result.title);
@@ -70,7 +85,23 @@ export default function AddItemForm() {
 
             <form action={formAction}>
                 <label htmlFor="search">Search</label>
-                <input /* onChange={} when API is added */ type="text" id="search" name="search" placeholder="Search for title, author, year..." autoFocus />
+                <input type="text" id="search" name="search" placeholder="Search for title, author, year..." autoFocus
+                value={searchQuery} onChange={handleSearchChange} />
+
+                {isSearching && <p>Searching...</p>}
+                {searchError && <p style={{ color: "red" }}>{searchError}</p>}
+
+                {searchResults.length > 0 && (
+                    <ul>
+                        {searchResults.map((result) => (
+                            <li key={result.key} onClick={() => handleSelect(result)}>
+                                {result.title}
+                                {result.author_name.length ? ` - ${result.author_name.join(", ")}` : ""}
+                                {result.first_publish_year ? ` (${result.first_publish_year})` : ""}
+                            </li>
+                        ))}
+                    </ul>
+                )}
 
                 <label htmlFor="title">Title</label>
                 <input type="text" id="title" name="title" placeholder="Title of book" required />
