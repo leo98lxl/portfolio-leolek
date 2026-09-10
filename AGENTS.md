@@ -8,7 +8,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Branches
 
-Make sure that no major changes are made directly inside the master branch! Before writing any code, ask for a branch or suggest creating one for the task at hand.
+Make sure that no major changes are made directly inside the master branch! After recieving instructions, check if we are still in the master branch. If so, ask for a branch or suggest creating one for the task at hand. If we are in another branch, proceed with the instructions.
 
 ## Implementing changes
 

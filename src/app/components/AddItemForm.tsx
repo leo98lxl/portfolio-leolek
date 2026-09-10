@@ -1,16 +1,64 @@
 "use client";
 
 import Link from "next/link";
+import useDebounce from "@/app/hooks/useDebounce";
 import { SearchResult } from "@/app/types";
-import useDebounce from "../hooks/useDebounce";
 import { addItem } from "@/app/account/actions";
-import { useActionState, useState } from "react";
-
-const [searchQuery, setSearchQuery] = useState();
-const [searchResults, setSearchResults] = useState();
+import { ChangeEvent, useActionState, useEffect, useState } from "react";
 
 export default function AddItemForm() {
     const [state, formAction, isPending] = useActionState(addItem, null);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+    const [isSearching, setIsSearching] = useState(false);
+    const [searchError, setSearchError] = useState<string | null>(null);
+
+    const debouncedQuery = useDebounce(searchQuery, 500);
+
+    useEffect(() => {
+    if (!debouncedQuery) {
+        setSearchResults([]);
+        return;
+    }
+
+    setIsSearching(true);
+    setSearchError(null);
+
+    fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(debouncedQuery)}&fields=title,author_name,first_publish_year,key&limit=10`)
+    
+    .then((res) => {
+        if (!res.ok) throw new Error (`Error ${res.status}`);
+        return res.json();
+    })
+    .then((data => {
+        const results: SearchResult[] = data.docs.map((doc: any) => ({
+            title: doc.title,
+            author: doc.author_name || [],
+            first_publish_year: doc.first_publish_year,
+            key: doc.key,
+        }));
+        setSearchResults(results);
+    })
+    .catch((err) => {
+        console.error(err);
+        setSearchError(err.message);
+        setSearchResults([]);
+    })
+    .finally(() => setIsSearching(false));
+    }, [debouncedQuery]);
+    
+    const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
+        setSearchQuery(e.target.value);
+
+    const handleSelect = (result: SearchResult) => {
+        (document.getElementById("title") as HTMLInputElement).value = result.title;
+        (document.getElementById("author") as HTMLInputElement).value = result.author_name.join(", ");
+        if (result.first_publish_year) {
+            (document.getElementById("year") as HTMLInputElement).value = String(result.first_publish_year);
+        }
+        setSearchResults([]);
+        setSearchQuery(result.title);
+    };
 
     return (
         <div>
