@@ -67,12 +67,15 @@ export default function AddItemForm() {
         const inputTitle = document.getElementById("title") as HTMLInputElement;
         const inputAuthor = document.getElementById("author") as HTMLInputElement;
         const inputYear = document.getElementById("year") as HTMLInputElement;
+        const inputCover = document.getElementById("cover_i") as HTMLInputElement;
 
         if (inputTitle) inputTitle.value = result.title;
         if (inputAuthor) inputAuthor.value = result.author_name.join(", ");
         if (inputYear && result.first_publish_year) {
             inputYear.value = String(result.first_publish_year);
         }
+        if (inputCover) inputCover.value = result.cover_i?.toString() ?? "";
+
         setSearchResults([]);
         setSearchQuery(result.title);
     };
@@ -100,12 +103,25 @@ export default function AddItemForm() {
                                 {result.title}
                                 {result.author_name.length ? ` - ${result.author_name.join(", ")}` : ""}
                                 {result.first_publish_year ? ` (${result.first_publish_year})` : ""}
-                                {result.cover_i && (<img src={`https://covers.openlibrary.org/b/id/${result.cover_i}-S.jpg`} alt={`Book cover for ${result.title}`}
-                                loading="lazy" />)}
+                                {result.cover_i 
+                                    ? (
+                                    <img src={`https://covers.openlibrary.org/b/id/${result.cover_i}-S.jpg`} 
+                                        alt={`Book cover for ${result.title}`} loading="lazy" />
+                                    ) : (
+                                    <img
+                                        className="dark:invert"
+                                        src="/book-dashed.svg"
+                                        alt="No book cover available"
+                                        width={40}
+                                        height={40}
+                                    />)}
                             </li>
                         ))}
                     </ul>
                 )}
+
+                {/* Book cover display */}
+                <input type="hidden" id="cover_i" name="cover_i" value="" />
 
                 <label htmlFor="title">Title</label>
                 <input type="text" id="title" name="title" placeholder="Title of book" required />
@@ -114,7 +130,7 @@ export default function AddItemForm() {
                 <input type="text" id="author" name="author" placeholder="Author of book" required />
 
                 <label htmlFor="year">Release year</label>
-                <input type="number" id="year" name="year" min={1900} max={new Date().getFullYear()} placeholder="YYYY" />
+                <input type="number" id="year" name="year" min={1455} max={new Date().getFullYear()} placeholder="YYYY" />
 
                 <fieldset>
                     <legend>Status (Optional)</legend>

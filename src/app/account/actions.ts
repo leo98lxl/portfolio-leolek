@@ -120,6 +120,7 @@ export async function addItem(_prevState: AddItemState, formData: FormData): Pro
   const title = String(formData.get("title") ?? "").trim();
   const author = String(formData.get("author") ?? "").trim();
   const year = getOptionalInteger(formData, "year");
+  const cover_i = formData.get("cover_i") ? Number(formData.get("cover_i")) : null;
   const rating = getOptionalInteger(formData, "rating");
   const review = String(formData.get("review") ?? "").trim();
 
@@ -156,6 +157,7 @@ export async function addItem(_prevState: AddItemState, formData: FormData): Pro
     title,
     author,
     year,
+    cover_url: cover_i ? `https://covers.openlibrary.org/b/id/${cover_i}-M.jpg` : null,
     status: formData.get("status") === "on" ? "read" : "unread",
     rating,
     review: review || null,

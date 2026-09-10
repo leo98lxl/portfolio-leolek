@@ -53,7 +53,7 @@ export default async function CollectionPage(
 
   let itemsQuery = supabase
     .from('media_items')
-    .select('id, title, author, year, status, rating, review, date_added');
+    .select('id, title, author, year, cover_url, status, rating, review, date_added');
 
   if (status) {
     itemsQuery = itemsQuery.eq('status', status);
@@ -101,6 +101,17 @@ export default async function CollectionPage(
           <ul className="grid gap-y-4 sm:grid-cols-6 auto-rows-min border-4 border-gray-300">
             {collectionItems.map((item) => (
               <li key={item.id} className="min-h-40 border border-gray-200 p-4">
+                {item.cover_url 
+                ? (
+                  <img src={item.cover_url} alt={`Book cover for ${item.title}`} loading="lazy" />
+                ) : (
+                <Image
+                  className="dark:invert"
+                  src="/book-dashed.svg"
+                  alt="No book cover available"
+                  width={80}
+                  height={80}
+                />)}
                 <h2 className="font-semibold">{item.title}</h2>
                 <p className="text-sm text-gray-600">{item.author}</p>
                 {item.year && <p className="text-sm text-gray-600">{item.year}</p>}

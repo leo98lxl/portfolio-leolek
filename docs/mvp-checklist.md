@@ -53,7 +53,7 @@ an empty shelf page tied to your account. No media items yet — that's fine.
 - [X] Display search results (title, author, cover thumbnail) for the user
       to pick from
 - [X] Selecting a result auto-fills the add-item form
-- [ ] Saved item includes the cover image URL from Open Library
+- [X] Saved item includes the cover image URL from Open Library
 
 **End of Week 2 checkpoint:** full loop works — search a book, add it, see
 it appear correctly on your shelf, sort the shelf. This is your functional
