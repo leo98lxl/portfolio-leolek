@@ -1,8 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { SearchResult } from "@/app/types";
+import useDebounce from "../hooks/useDebounce";
 import { addItem } from "@/app/account/actions";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
+
+const [searchQuery, setSearchQuery] = useState();
+const [searchResults, setSearchResults] = useState();
 
 export default function AddItemForm() {
     const [state, formAction, isPending] = useActionState(addItem, null);
