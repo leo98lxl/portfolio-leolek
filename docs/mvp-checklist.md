@@ -50,7 +50,7 @@ an empty shelf page tied to your account. No media items yet — that's fine.
 ### Open Library search integration
 - [X] Replace/extend the manual form with a search-as-you-type or search
       button hitting the Open Library API
-- [ ] Display search results (title, author, cover thumbnail) for the user
+- [X] Display search results (title, author, cover thumbnail) for the user
       to pick from
 - [X] Selecting a result auto-fills the add-item form
 - [ ] Saved item includes the cover image URL from Open Library

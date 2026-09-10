@@ -10,6 +10,7 @@ interface OpenLibraryDoc {
     title: string;
     author_name?: string[];
     first_publish_year?: number;
+    cover_i?: number;
     key: string;
 }
 
@@ -35,7 +36,7 @@ export default function AddItemForm() {
     setIsSearching(true);
     setSearchError(null);
 
-    fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(debouncedQuery)}&fields=title,author_name,first_publish_year,key&limit=10`)
+    fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(debouncedQuery)}&fields=title,author_name,first_publish_year,cover_i,key&limit=10`)
     
     .then((res) => {
         if (!res.ok) throw new Error (`Error ${res.status}`);
@@ -46,6 +47,7 @@ export default function AddItemForm() {
           title: doc.title,
           author_name: doc.author_name ?? [],
           first_publish_year: doc.first_publish_year,
+          cover_i: doc.cover_i,
           key: doc.key,
         }));
         setSearchResults(results);
@@ -98,6 +100,8 @@ export default function AddItemForm() {
                                 {result.title}
                                 {result.author_name.length ? ` - ${result.author_name.join(", ")}` : ""}
                                 {result.first_publish_year ? ` (${result.first_publish_year})` : ""}
+                                {result.cover_i && (<img src={`https://covers.openlibrary.org/b/id/${result.cover_i}-S.jpg`} alt={`Book cover for ${result.title}`}
+                                loading="lazy" />)}
                             </li>
                         ))}
                     </ul>
