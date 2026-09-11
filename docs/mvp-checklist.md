@@ -48,12 +48,12 @@ an empty shelf page tied to your account. No media items yet — that's fine.
 - [X] Sorting controls: by name, by year, by date added
 
 ### Open Library search integration
-- [ ] Replace/extend the manual form with a search-as-you-type or search
+- [X] Replace/extend the manual form with a search-as-you-type or search
       button hitting the Open Library API
-- [ ] Display search results (title, author, cover thumbnail) for the user
+- [X] Display search results (title, author, cover thumbnail) for the user
       to pick from
-- [ ] Selecting a result auto-fills the add-item form
-- [ ] Saved item includes the cover image URL from Open Library
+- [X] Selecting a result auto-fills the add-item form
+- [X] Saved item includes the cover image URL from Open Library
 
 **End of Week 2 checkpoint:** full loop works — search a book, add it, see
 it appear correctly on your shelf, sort the shelf. This is your functional

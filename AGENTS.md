@@ -6,6 +6,14 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
+## Branches
+
+Make sure that no major changes are made directly inside the master branch! After recieving instructions, check if we are still in the master branch. If so, ask for a branch or suggest creating one for the task at hand. If we are in another branch, proceed with the instructions.
+
+## Implementing changes
+
+Feel free to suggest code to implement, but ask for permission first if the agent should implement it directly or not.
+
 <!-- END:nextjs-agent-rules -->
 
 ## Agent skills
