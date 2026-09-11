@@ -62,8 +62,8 @@ core.
 ## Week 3 — Item Details, Visual Polish, Buffer
 
 ### Item details
-- [ ] Add UI to mark an item as read/unread (or your chosen status labels)
-- [ ] Add rating input (e.g. 1–5 stars) on an item
+- [X] Add UI to mark an item as read/unread (or your chosen status labels)
+- [X] Add rating input (e.g. 1–5 stars) on an item
 - [ ] Add review text field on an item
 - [ ] Confirm all three are optional and editable after the item was added
 

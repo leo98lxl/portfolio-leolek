@@ -167,7 +167,7 @@ export default function AddItemForm() {
                 <input type="hidden" id="cover_i" name="cover_i" value={selectedBook.coverId} readOnly />
 
                 <label className="py-2 text-xl" htmlFor="title">Title</label>
-                <input className="border-2 rounded-sm px-2"
+                <input className="border-2 rounded-sm px-2 w-fit"
                     type="text"
                     id="title"
                     name="title"
@@ -178,7 +178,7 @@ export default function AddItemForm() {
                 />
 
                 <label className="py-2 text-xl" htmlFor="author">Author</label>
-                <input className="border-2 rounded-sm px-2"
+                <input className="border-2 rounded-sm px-2 w-fit"
                     type="text"
                     id="author"
                     name="author"
@@ -189,7 +189,7 @@ export default function AddItemForm() {
                 />
 
                 <label className="py-2 text-xl" htmlFor="year">Release year</label>
-                <input className="border-2 rounded-sm px-2"
+                <input className="border-2 rounded-sm px-2 w-fit"
                     type="number"
                     id="year"
                     name="year"
@@ -250,8 +250,12 @@ export default function AddItemForm() {
                     placeholder="Write a review (up to 200 characters)">
                 </textarea>
                 
-                <button className="border-2 rounded-lg text-xl hover:cursor-pointer" type="submit" disabled={isPending}>{isPending ? "Adding..." : "Add to Collection"}</button>
-                <Link className="border-2 rounded-lg text-xl hover:cursor-pointer text-center" href="/collection">Cancel</Link>
+                <button className="border-2 rounded-lg text-xl px-6 w-fit hover:cursor-pointer hover:bg-blue-400" 
+                    type="submit" disabled={isPending}>{isPending ? "Adding..." : "Add to Collection"}
+                </button>
+                <Link className="border-2 rounded-lg text-xl px-6 w-fit hover:cursor-pointer hover:bg-red-800 text-center" 
+                    href="/collection">Cancel
+                </Link>
             </form>
         </div>
     )

@@ -128,8 +128,8 @@ export default async function CollectionPage(
               >
               <Image
                 className="dark:invert"
-                src="/plus.svg"
-                alt="Plus sign for adding items"
+                src="/book-plus.svg"
+                alt="Book with plus sign"
                 width={80}
                 height={80}
               />
