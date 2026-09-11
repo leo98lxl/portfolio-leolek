@@ -209,7 +209,7 @@ export default function AddItemForm() {
                 <textarea id="review" name="review" minLength={0} maxLength={200} placeholder="Write a review (up to 200 characters)">
                 </textarea>
 
-                <button type="submit" aria-disabled={isPending}>{isPending ? "Adding..." : "Add to Collection"}</button>
+                <button type="submit" disabled={isPending}>{isPending ? "Adding..." : "Add to Collection"}</button>
                 <Link className="ml-4" href="/collection">Cancel</Link>
             </form>
         </div>
