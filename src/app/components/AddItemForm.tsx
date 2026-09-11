@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import useDebounce from "@/app/hooks/useDebounce";
 import { SearchResult } from "@/app/types";
@@ -25,56 +26,85 @@ export default function AddItemForm() {
     const [isSearching, setIsSearching] = useState(false);
     const [searchError, setSearchError] = useState<string | null>(null);
 
+    const [selectedBook, setSelectedBook] = useState({
+        title: "",
+        author: "",
+        year: "",
+        coverId: "",
+    });
+
     const debouncedQuery = useDebounce(searchQuery, 500);
 
     useEffect(() => {
-    if (!debouncedQuery) {
-        setSearchResults([]);
-        return;
+    const query = debouncedQuery.trim();
+
+    if (!query) {
+        return; 
     }
 
-    setIsSearching(true);
-    setSearchError(null);
+    const controller = new AbortController();
+    let active = true;
 
-    fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(debouncedQuery)}&fields=title,author_name,first_publish_year,cover_i,key&limit=10`)
+    fetch(
+        `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&fields=title,author_name,first_publish_year,cover_i,key&limit=10`,
+        { signal: controller.signal }
+    )
     
     .then((res) => {
         if (!res.ok) throw new Error (`Error ${res.status}`);
         return res.json() as Promise<OpenLibraryResponse>;
     })
     .then((data) => {
-        const results: SearchResult[] = data.docs.map((doc) => ({
+        if (!active) return;
+
+        setSearchResults(data.docs.map((doc) => ({
           title: doc.title,
           author_name: doc.author_name ?? [],
           first_publish_year: doc.first_publish_year,
           cover_i: doc.cover_i,
           key: doc.key,
-        }));
-        setSearchResults(results);
+        })));
     })
     .catch((err) => {
         console.error(err);
+        if (!active || err.name === "AbortError") {
+            return;
+        }
+
         setSearchError(err instanceof Error ? err.message : String(err));
         setSearchResults([]);
     })
-    .finally(() => setIsSearching(false));
-    }, [debouncedQuery]);
+    .finally(() => {
+        if (active) setIsSearching(false);
+    });
+
+    return () => {
+        active = false;
+        controller.abort();
+    };
+}, [debouncedQuery]);
     
-    const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
-        setSearchQuery(e.target.value);
+    const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setSearchQuery(value);
+
+        if (!value.trim()) {
+            setSearchResults([]);
+            setSearchError(null);
+        }
+
+        setSearchResults([]);
+        setIsSearching(true);
+        setSearchError(null);
+    };
 
     const handleSelect = (result: SearchResult) => {
-        const inputTitle = document.getElementById("title") as HTMLInputElement;
-        const inputAuthor = document.getElementById("author") as HTMLInputElement;
-        const inputYear = document.getElementById("year") as HTMLInputElement;
-        const inputCover = document.getElementById("cover_i") as HTMLInputElement;
-
-        if (inputTitle) inputTitle.value = result.title;
-        if (inputAuthor) inputAuthor.value = result.author_name.join(", ");
-        if (inputYear && result.first_publish_year) {
-            inputYear.value = String(result.first_publish_year);
-        }
-        if (inputCover) inputCover.value = result.cover_i?.toString() ?? "";
+        setSelectedBook({
+            title: result.title,
+            author: result.author_name.join(", "),
+            year: result.first_publish_year ? String(result.first_publish_year) : "",
+            coverId: result.cover_i?.toString() ?? "",
+        });
 
         setSearchResults([]);
         setSearchQuery(result.title);
@@ -86,6 +116,10 @@ export default function AddItemForm() {
                 <p style={{ color: "red" }} role="alert">
                     {state.error}
                 </p>
+            )}
+
+            {!isSearching && !searchError && debouncedQuery.trim() && searchResults.length === 0 && (
+                <p role="status">No books found.</p>
             )}
 
             <form action={formAction}>
@@ -105,10 +139,13 @@ export default function AddItemForm() {
                                 {result.first_publish_year ? ` (${result.first_publish_year})` : ""}
                                 {result.cover_i 
                                     ? (
-                                    <img src={`https://covers.openlibrary.org/b/id/${result.cover_i}-S.jpg`} 
-                                        alt={`Book cover for ${result.title}`} loading="lazy" />
+                                    <Image src={`https://covers.openlibrary.org/b/id/${result.cover_i}-S.jpg`} 
+                                        alt={`Book cover for ${result.title}`}
+                                        width={40}
+                                        height={60} 
+                                        />
                                     ) : (
-                                    <img
+                                    <Image
                                         className="dark:invert"
                                         src="/book-dashed.svg"
                                         alt="No book cover available"
@@ -121,16 +158,41 @@ export default function AddItemForm() {
                 )}
 
                 {/* Book cover display */}
-                <input type="hidden" id="cover_i" name="cover_i" value="" />
+                <input type="hidden" id="cover_i" name="cover_i" value={selectedBook.coverId} readOnly />
 
                 <label htmlFor="title">Title</label>
-                <input type="text" id="title" name="title" placeholder="Title of book" required />
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Title of book"
+                    value={selectedBook.title}
+                    onChange={(event) => setSelectedBook({ ...selectedBook, title: event.target.value })}
+                    required
+                />
 
                 <label htmlFor="author">Author</label>
-                <input type="text" id="author" name="author" placeholder="Author of book" required />
+                <input
+                    type="text"
+                    id="author"
+                    name="author"
+                    placeholder="Author of book"
+                    value={selectedBook.author}
+                    onChange={(event) => setSelectedBook({ ...selectedBook, author: event.target.value })}
+                    required
+                />
 
                 <label htmlFor="year">Release year</label>
-                <input type="number" id="year" name="year" min={1455} max={new Date().getFullYear()} placeholder="YYYY" />
+                <input
+                    type="number"
+                    id="year"
+                    name="year"
+                    min={1455}
+                    max={new Date().getFullYear()}
+                    placeholder="YYYY"
+                    value={selectedBook.year}
+                    onChange={(event) => setSelectedBook({ ...selectedBook, year: event.target.value })}
+                />
 
                 <fieldset>
                     <legend>Status (Optional)</legend>
