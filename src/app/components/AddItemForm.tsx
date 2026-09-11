@@ -111,7 +111,12 @@ export default function AddItemForm() {
     };
 
     return (
-        <div>
+        <div className="grid border-4 border-amber-50 rounded-xl min-w-xs max-w-[1920px] m-4 p-4">
+            <div className="py-2">
+                <h2 className="text-3xl text-center py-4">Add to Collection</h2>
+                <p>Use the search field to look for a book. A successful match fills in all the required info fields for you.</p>
+            </div>
+
             {state?.error && (
                 <p style={{ color: "red" }} role="alert">
                     {state.error}
@@ -122,9 +127,9 @@ export default function AddItemForm() {
                 <p role="status">No books found.</p>
             )}
 
-            <form action={formAction}>
-                <label htmlFor="search">Search</label>
-                <input type="text" id="search" name="search" placeholder="Search for title, author, year..." autoFocus
+            <form className="grid py-2" action={formAction}>
+                <label className="py-2 text-xl" htmlFor="search">Search</label>
+                <input className="col-span-full border-2 rounded-sm px-2" type="text" id="search" name="search" placeholder="Search for title, author, year..." autoFocus
                 value={searchQuery} onChange={handleSearchChange} />
 
                 {isSearching && <p>Searching...</p>}
@@ -160,8 +165,8 @@ export default function AddItemForm() {
                 {/* Book cover display */}
                 <input type="hidden" id="cover_i" name="cover_i" value={selectedBook.coverId} readOnly />
 
-                <label htmlFor="title">Title</label>
-                <input
+                <label className="py-2 text-xl" htmlFor="title">Title</label>
+                <input className="border-2 rounded-sm px-2"
                     type="text"
                     id="title"
                     name="title"
@@ -171,8 +176,8 @@ export default function AddItemForm() {
                     required
                 />
 
-                <label htmlFor="author">Author</label>
-                <input
+                <label className="py-2 text-xl" htmlFor="author">Author</label>
+                <input className="border-2 rounded-sm px-2"
                     type="text"
                     id="author"
                     name="author"
@@ -182,8 +187,8 @@ export default function AddItemForm() {
                     required
                 />
 
-                <label htmlFor="year">Release year</label>
-                <input
+                <label className="py-2 text-xl" htmlFor="year">Release year</label>
+                <input className="border-2 rounded-sm px-2"
                     type="number"
                     id="year"
                     name="year"
@@ -195,22 +200,23 @@ export default function AddItemForm() {
                 />
 
                 <fieldset>
-                    <legend>Status (Optional)</legend>
+                    <legend className="py-2 text-xl">Status (Optional)</legend>
                     <div>
-                        <input type="checkbox" id="status" name="status" />
-                        <label htmlFor="status">I have read this book</label>
+                        <label htmlFor="status">I have read this book:</label>
+                        <input className="mx-4 hover:cursor-pointer" type="checkbox" id="status" name="status" />
                     </div>
                 </fieldset>
 
-                <label htmlFor="rating">Your rating (Optional)</label>
-                <input type="number" id="rating" name="rating" min={1} max={5} />
+                <label className="py-2 text-xl" htmlFor="rating">Your rating (Optional)</label>
+                <input className="border-2 rounded-sm px-2" type="number" id="rating" name="rating" min={1} max={5} />
 
-                <label htmlFor="review">Review (Optional)</label>
-                <textarea id="review" name="review" minLength={0} maxLength={200} placeholder="Write a review (up to 200 characters)">
+                <label className="py-2 text-xl" htmlFor="review">Review (Optional)</label>
+                <textarea className="col-span-full border-2 rounded-sm px-2" id="review" name="review" minLength={0} maxLength={200} 
+                    placeholder="Write a review (up to 200 characters)">
                 </textarea>
-
-                <button type="submit" disabled={isPending}>{isPending ? "Adding..." : "Add to Collection"}</button>
-                <Link className="ml-4" href="/collection">Cancel</Link>
+                
+                <button className="border-2 rounded-lg text-xl hover:cursor-pointer" type="submit" disabled={isPending}>{isPending ? "Adding..." : "Add to Collection"}</button>
+                <Link className="border-2 rounded-lg text-xl hover:cursor-pointer text-center" href="/collection">Cancel</Link>
             </form>
         </div>
     )
