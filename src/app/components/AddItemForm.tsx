@@ -25,6 +25,7 @@ export default function AddItemForm() {
     const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
     const [isSearching, setIsSearching] = useState(false);
     const [searchError, setSearchError] = useState<string | null>(null);
+    const [rating, setRating] = useState(0);
 
     const [selectedBook, setSelectedBook] = useState({
         title: "",
@@ -207,8 +208,42 @@ export default function AddItemForm() {
                     </div>
                 </fieldset>
 
-                <label className="py-2 text-xl" htmlFor="rating">Your rating (Optional)</label>
-                <input className="border-2 rounded-sm px-2" type="number" id="rating" name="rating" min={1} max={5} />
+                <fieldset>
+                    <legend className="py-2 text-xl">Your rating (Optional)</legend>
+                
+                    <div className="flex" role="radiogroup" aria-label="Your rating">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                        <label key={star} className="hover:cursor-pointer">
+                            <input 
+                                className="sr-only" 
+                                type="radio"
+                                name="rating" 
+                                value={star}
+                                checked={rating === star}
+                                onChange={() => setRating(star)}
+                                />
+                            <svg
+                                className={`h-7.5 w-7.5 ${
+                                    rating >= star ? "fill-amber-300" : "fill-transparent"
+                                } stroke-amber-300`}
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                            <path
+                                 d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                                 strokeWidth="2"
+                                 strokeLinecap="round"
+                                 strokeLinejoin="round"
+                             />
+                            </svg>
+
+                            <span className="sr-only">
+                                {star} {star === 1 ? "star" : "stars"}
+                            </span>
+                        </label>
+                        ))}
+                    </div>
+                </fieldset>
 
                 <label className="py-2 text-xl" htmlFor="review">Review (Optional)</label>
                 <textarea className="col-span-full border-2 rounded-sm px-2" id="review" name="review" minLength={0} maxLength={200} 
