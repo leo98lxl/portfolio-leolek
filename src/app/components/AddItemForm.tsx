@@ -93,11 +93,14 @@ export default function AddItemForm() {
         if (!value.trim()) {
             setSearchResults([]);
             setSearchError(null);
+            setIsSearching(false);
         }
 
-        setSearchResults([]);
-        setIsSearching(true);
-        setSearchError(null);
+        if (value.trim()) {
+            setSearchResults([]);
+            setSearchError(null);
+            setIsSearching(true);
+        };
     };
 
     const handleSelect = (result: SearchResult) => {
@@ -159,7 +162,13 @@ export default function AddItemForm() {
                             {searchResults.map((result) => (
                                 <li 
                                     className="flex items-center justify-between uppercase p-2 cursor-pointer hover:bg-blue-400 transition-colors"
-                                    key={result.key} 
+                                    key={result.key}
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter" || e.key === " ") {
+                                        handleSelect(result);
+                                    }}}
                                     onClick={() => handleSelect(result)}>
                                     
                                     <span className="truncate">
