@@ -117,7 +117,7 @@ export default async function CollectionPage(
                 {item.year && <p className="text-sm text-gray-600">{item.year}</p>}
                 <p className="text-sm mt-2">{item.status === 'read' ? 'Read' : 'Unread'}</p>
                 {item.rating && <p className="text-sm">Rating: {item.rating}/5</p>}
-                {item.review && <p className="text-sm mt-2">{item.review}</p>}
+                {item.review && <p className="text-sm mt-2">{`"${item.review}"`}</p>}
               </li>
             ))}
             <li className="min-h-40 border border-dashed border-gray-300 hover:bg-blue-400">
