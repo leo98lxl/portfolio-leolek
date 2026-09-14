@@ -112,9 +112,9 @@ export default function AddItemForm() {
     };
 
     return (
-        <div className="grid border-4 border-amber-50 rounded-xl min-w-xs max-w-[1920px] m-4 p-4">
-            <div className="py-2">
-                <h2 className="text-3xl text-center py-4">Add to Collection</h2>
+        <div className="grid border-4 border-amber-50 rounded-xl min-w-xs max-w-[1920px] m-4 px-8 py-4">
+            <div className="py-2 text-center">
+                <h2 className="text-3xl py-4">Add to Collection</h2>
                 <p>Use the search field to look for a book. A successful match fills in all the required info fields for you.</p>
             </div>
 
@@ -166,96 +166,110 @@ export default function AddItemForm() {
                 {/* Book cover display */}
                 <input type="hidden" id="cover_i" name="cover_i" value={selectedBook.coverId} readOnly />
 
-                <label className="py-2 text-xl" htmlFor="title">Title</label>
-                <input className="border-2 rounded-sm px-2 w-fit"
-                    type="text"
-                    id="title"
-                    name="title"
-                    placeholder="Title of book"
-                    value={selectedBook.title}
-                    onChange={(event) => setSelectedBook({ ...selectedBook, title: event.target.value })}
-                    required
-                />
-
-                <label className="py-2 text-xl" htmlFor="author">Author</label>
-                <input className="border-2 rounded-sm px-2 w-fit"
-                    type="text"
-                    id="author"
-                    name="author"
-                    placeholder="Author of book"
-                    value={selectedBook.author}
-                    onChange={(event) => setSelectedBook({ ...selectedBook, author: event.target.value })}
-                    required
-                />
-
-                <label className="py-2 text-xl" htmlFor="year">Release year</label>
-                <input className="border-2 rounded-sm px-2 w-fit"
-                    type="number"
-                    id="year"
-                    name="year"
-                    min={1455}
-                    max={new Date().getFullYear()}
-                    placeholder="YYYY"
-                    value={selectedBook.year}
-                    onChange={(event) => setSelectedBook({ ...selectedBook, year: event.target.value })}
-                />
-
-                <fieldset>
-                    <legend className="py-2 text-xl">Status (Optional)</legend>
-                    <div>
-                        <label htmlFor="status">I have read this book:</label>
-                        <input className="mx-4 hover:cursor-pointer" type="checkbox" id="status" name="status" />
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div className="flex flex-col">
+                        
+                        <label className="py-2 text-xl" htmlFor="title">Title</label>
+                        <input className="border-2 rounded-sm px-2 w-fit"
+                            type="text"
+                            id="title"
+                            name="title"
+                            placeholder="Title of book"
+                            value={selectedBook.title}
+                            onChange={(event) => setSelectedBook({ ...selectedBook, title: event.target.value })}
+                            required
+                            />
                     </div>
-                </fieldset>
 
-                <fieldset>
-                    <legend className="py-2 text-xl">Your rating (Optional)</legend>
-                
-                    <div className="flex" role="radiogroup" aria-label="Your rating">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                        <label key={star} className="hover:cursor-pointer">
-                            <input 
-                                className="sr-only" 
-                                type="radio"
-                                name="rating" 
-                                value={star}
-                                checked={rating === star}
-                                onChange={() => setRating(star)}
-                                />
-                            <svg
-                                className={`h-7.5 w-7.5 ${
-                                    rating >= star ? "fill-amber-300" : "fill-transparent"
-                                } stroke-amber-300`}
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
-                            >
-                            <path
-                                 d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
-                                 strokeWidth="2"
-                                 strokeLinecap="round"
-                                 strokeLinejoin="round"
-                             />
-                            </svg>
-
-                            <span className="sr-only">
-                                {star} {star === 1 ? "star" : "stars"}
-                            </span>
-                        </label>
-                        ))}
+                    <div className="flex flex-col">
+                        <label className="py-2 text-xl" htmlFor="author">Author</label>
+                        <input className="border-2 rounded-sm px-2 w-fit"
+                            type="text"
+                            id="author"
+                            name="author"
+                            placeholder="Author of book"
+                            value={selectedBook.author}
+                            onChange={(event) => setSelectedBook({ ...selectedBook, author: event.target.value })}
+                            required
+                            />
                     </div>
-                </fieldset>
+
+                    <div className="flex flex-col">
+                        <label className="py-2 text-xl" htmlFor="year">Release year</label>
+                        <input className="border-2 rounded-sm px-2 w-fit"
+                            type="number"
+                            id="year"
+                            name="year"
+                            min={1455}
+                            max={new Date().getFullYear()}
+                            placeholder="YYYY"
+                            value={selectedBook.year}
+                            onChange={(event) => setSelectedBook({ ...selectedBook, year: event.target.value })}
+                            />
+                        </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center py-2">
+                    <fieldset>
+                        <legend className="py-2 text-xl">Status (Optional)</legend>
+                        <div className="flex items-center gap-3 pt-1">
+                            <label htmlFor="status">I have read this book:</label>
+                            <input className="w-5 h-5 cursor-pointer" type="checkbox" id="status" name="status" />
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend className="py-2 text-xl">Your rating (Optional)</legend>
+
+                        <div className="flex gap-1 pt-1" role="radiogroup" aria-label="Your rating">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                            <label key={star} className="hover:cursor-pointer">
+                                <input 
+                                    className="sr-only" 
+                                    type="radio"
+                                    name="rating" 
+                                    value={star}
+                                    checked={rating === star}
+                                    onChange={() => setRating(star)}
+                                    />
+                                <svg
+                                    className={`h-7.5 w-7.5 ${
+                                        rating >= star ? "fill-amber-300" : "fill-transparent"
+                                    } stroke-amber-300`}
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+                                <path
+                                     d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                                     strokeWidth="2"
+                                     strokeLinecap="round"
+                                     strokeLinejoin="round"
+                                 />
+                                </svg>
+
+                                <span className="sr-only">
+                                    {star} {star === 1 ? "star" : "stars"}
+                                </span>
+                            </label>
+                            ))}
+                        </div>
+                    </fieldset>
+                </div>
 
                 <label className="py-2 text-xl" htmlFor="review">Review (Optional)</label>
                 <textarea className="col-span-full border-2 rounded-sm px-2" id="review" name="review" minLength={0} maxLength={200} 
                     placeholder="Write a review (up to 200 characters)">
                 </textarea>
                 
-                <button className="border-2 rounded-lg text-xl px-6 w-fit hover:cursor-pointer hover:bg-blue-400" 
-                    type="submit" disabled={isPending}>{isPending ? "Adding..." : "Add to Collection"}
-                </button>
-                <Link className="border-2 rounded-lg text-xl px-6 w-fit hover:cursor-pointer hover:bg-red-800 text-center" 
-                    href="/collection">Cancel
-                </Link>
+                <div className="flex justify-center gap-6 pt-6">
+                    <button className="border-3 border-black dark:border-white rounded-lg text-xl px-6 w-fit hover:cursor-pointer hover:bg-blue-400 transition-colors" 
+                        type="submit" disabled={isPending}>{isPending ? "Adding..." : "Add to Collection"}
+                    </button>
+                    <Link className="border-3 border-black dark:border-white rounded-lg text-xl px-6 w-fit hover:cursor-pointer hover:bg-red-800 transition-colors text-center" 
+                        href="/collection">Cancel
+                    </Link>
+                </div>
+
             </form>
         </div>
     )
