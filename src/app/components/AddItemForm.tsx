@@ -5,7 +5,7 @@ import Link from "next/link";
 import useDebounce from "@/app/hooks/useDebounce";
 import { SearchResult } from "@/app/types";
 import { addItem } from "@/app/account/actions";
-import { ChangeEvent, useActionState, useEffect, useState } from "react";
+import { ChangeEvent, useActionState, useEffect, useRef, useState } from "react";
 
 interface OpenLibraryDoc {
     title: string;
@@ -26,6 +26,7 @@ export default function AddItemForm() {
     const [isSearching, setIsSearching] = useState(false);
     const [searchError, setSearchError] = useState<string | null>(null);
     const [rating, setRating] = useState(0);
+    const searchInputRef = useRef<HTMLInputElement>(null);
 
     const [selectedBook, setSelectedBook] = useState({
         title: "",
@@ -107,8 +108,9 @@ export default function AddItemForm() {
             coverId: result.cover_i?.toString() ?? "",
         });
 
+        setSearchQuery("");
         setSearchResults([]);
-        setSearchQuery(result.title);
+        searchInputRef.current?.blur();
     };
 
     return (
@@ -119,7 +121,7 @@ export default function AddItemForm() {
             </div>
 
             {state?.error && (
-                <p style={{ color: "red" }} role="alert">
+                <p className="text-red-800" role="alert">
                     {state.error}
                 </p>
             )}
@@ -131,13 +133,22 @@ export default function AddItemForm() {
             <form className="grid py-2" action={formAction}>
                 <div className="relative flex flex-col">
                     <label className="py-2 text-xl" htmlFor="search">Search</label>
-                    <input className="border-2 rounded-sm p-2 w-full" 
+                    <input 
+                        className="border-2 rounded-sm p-2 w-full" 
+                        ref={searchInputRef}
                         type="text" 
                         id="search" 
                         name="search" 
                         placeholder="Search for title, author, year..." 
                         autoFocus
-                        value={searchQuery} onChange={handleSearchChange} 
+                        value={searchQuery} 
+                        onChange={handleSearchChange} 
+                        onKeyDown={(e) => {
+                            if (e.key === "Escape") {
+                                setSearchResults([]);
+                                searchInputRef.current?.blur();
+                            }
+                        }}
                     />
 
                     {isSearching && <p>Searching...</p>}
