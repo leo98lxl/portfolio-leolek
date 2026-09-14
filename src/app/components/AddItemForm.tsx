@@ -129,39 +129,54 @@ export default function AddItemForm() {
             )}
 
             <form className="grid py-2" action={formAction}>
-                <label className="py-2 text-xl" htmlFor="search">Search</label>
-                <input className="col-span-full border-2 rounded-sm px-2" type="text" id="search" name="search" placeholder="Search for title, author, year..." autoFocus
-                value={searchQuery} onChange={handleSearchChange} />
+                <div className="relative flex flex-col">
+                    <label className="py-2 text-xl" htmlFor="search">Search</label>
+                    <input className="border-2 rounded-sm p-2 w-full" 
+                        type="text" 
+                        id="search" 
+                        name="search" 
+                        placeholder="Search for title, author, year..." 
+                        autoFocus
+                        value={searchQuery} onChange={handleSearchChange} 
+                    />
 
-                {isSearching && <p>Searching...</p>}
-                {searchError && <p style={{ color: "red" }}>{searchError}</p>}
+                    {isSearching && <p>Searching...</p>}
+                    {searchError && <p className="text-red-800">{searchError}</p>}
 
-                {searchResults.length > 0 && (
-                    <ul>
-                        {searchResults.map((result) => (
-                            <li key={result.key} onClick={() => handleSelect(result)}>
-                                {result.title}
-                                {result.author_name.length ? ` - ${result.author_name.join(", ")}` : ""}
-                                {result.first_publish_year ? ` (${result.first_publish_year})` : ""}
-                                {result.cover_i 
-                                    ? (
-                                    <Image src={`https://covers.openlibrary.org/b/id/${result.cover_i}-S.jpg`} 
-                                        alt={`Book cover for ${result.title}`}
-                                        width={40}
-                                        height={60} 
-                                        />
-                                    ) : (
-                                    <Image
-                                        className="dark:invert"
-                                        src="/book-dashed.svg"
-                                        alt="No book cover available"
-                                        width={40}
-                                        height={40}
-                                    />)}
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                    {searchResults.length > 0 && (
+                        <ul className="absolute top-full left-0 right-0 z-20 mt-0.5 bg-white dark:bg-zinc-900 border-2 border-black dark:border-white shadow-xl max-h-64 overflow-y-auto divide-y divide-gray-200">
+                            {searchResults.map((result) => (
+                                <li 
+                                    className="flex items-center justify-between uppercase p-2 cursor-pointer hover:bg-blue-400 transition-colors"
+                                    key={result.key} 
+                                    onClick={() => handleSelect(result)}>
+                                    
+                                    <span className="truncate">
+                                        {result.title}
+                                        {result.author_name.length ? ` - ${result.author_name.join(", ")}` : ""}
+                                        {result.first_publish_year ? ` (${result.first_publish_year})` : ""}
+                                    </span>
+                                    {result.cover_i 
+                                        ? (
+                                        <Image src={`https://covers.openlibrary.org/b/id/${result.cover_i}-S.jpg`} 
+                                            alt={`Book cover for ${result.title}`}
+                                            className="ml-2 shrink-0 object-cover"
+                                            width={24}
+                                            height={36} 
+                                            />
+                                        ) : (
+                                        <Image
+                                            className="dark:invert"
+                                            src="/book-dashed.svg"
+                                            alt="No book cover available"
+                                            width={40}
+                                            height={40}
+                                        />)}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
 
                 {/* Book cover display */}
                 <input type="hidden" id="cover_i" name="cover_i" value={selectedBook.coverId} readOnly />
