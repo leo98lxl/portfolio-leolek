@@ -17,11 +17,8 @@ export default async function AddItem() {
 
     return (
         <div>
-            <h2>Add to Collection</h2>
-            <p>Use the search field to look for a book. A successful match fills in all the required info fields for you.</p>
-
-            <AddItemForm>
-            </AddItemForm>
+          <AddItemForm>
+          </AddItemForm>
         </div>
     )
 }
