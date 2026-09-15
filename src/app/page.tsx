@@ -16,24 +16,24 @@ export default function Home() {
       </div>
 
       {/* Main Content Card */}
-      <main className="relative z-10 bg-white border-2 border-black p-12 rounded-xl shadow-2xl flex flex-col items-center text-center max-w-lg w-full mx-4">
-        <h1 className="text-4xl font-bold mb-6 text-black">
+      <main className="relative z-10 bg-white border-4 border-black dark:bg-gray-800 dark:border-white p-12 rounded-xl shadow-2xl flex flex-col items-center text-center max-w-lg w-full mx-4">
+        <h1 className="text-4xl font-bold mb-6 text-black dark:text-white">
           Welcome to Shelfy!
         </h1>
-        <p className="text-xl text-gray-800 mb-10">
+        <p className="text-xl text-gray-800 mb-10 dark:text-white">
           The best place to store your collection digitally!
         </p>
 
         <div className="flex flex-col gap-5 w-full px-10">
           <Link
             href="/account/sign-up"
-            className="flex items-center justify-center gap-2 border-4 border-black bg-blue-400 hover:bg-blue-600 text-black hover:text-white text-lg font-medium py-4 px-8 rounded-full transition-colors"
+            className="flex items-center justify-center gap-2 border-2 border-indigo-800 bg-blue-400 hover:bg-blue-600 text-black hover:text-white hover:border-white text-lg font-medium py-4 px-8 rounded-full transition-colors"
           >
             Join us!
           </Link>
           <Link
             href="/account/log-in"
-            className="flex items-center justify-center gap-2 border-4 border-black bg-gray-400 hover:bg-gray-600 text-black hover:text-white text-lg font-medium py-4 px-8 rounded-full transition-colors"
+            className="flex items-center justify-center gap-2 border-2 border-stone-800 bg-gray-400 hover:bg-gray-600 text-black hover:text-white hover:border-white text-lg font-medium py-4 px-8 rounded-full transition-colors"
           >
             Log in
           </Link>
@@ -41,7 +41,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="absolute bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black font-semibold text-sm z-10">
+      <footer className="absolute bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-sm z-10">
         <span>&#169;2026 Shelfy</span>
         <Link href="/contact" className="hover:underline">
           Problems? Contact us!

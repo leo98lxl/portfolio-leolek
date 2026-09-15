@@ -75,16 +75,16 @@ export default async function CollectionPage(
     </div>
 
   return (
-    <div className="min-h-screen p-8 max-w-4xl mx-auto">
+    <div className="min-h-screen p-8 max-w-4xl mx-auto bg-white dark:bg-gray-800">
       <header className="flex justify-between items-center pb-6 border-b border-gray-200">
         <div>
-          <h1 className="text-3xl font-bold">Your Media Shelf</h1>
+          <h1 className="text-3xl font-bold">Your Shelfy</h1>
           <p className="text-sm text-gray-600">Logged in as {displayName}</p>
         </div>
         <form action={logout}>
           <button
             type="submit"
-            className="bg-gray-200 hover:bg-gray-300 text-black px-4 py-2 rounded-md transition-colors text-sm font-medium"
+            className="flex items-center justify-center gap-2 border-2 border-stone-800 bg-gray-400 hover:bg-gray-600 text-black hover:text-white hover:border-white hover:cursor-pointer text-lg font-medium py-2 px-4 rounded-full transition-colors"
           >
             Log Out
           </button>
@@ -120,7 +120,7 @@ export default async function CollectionPage(
                 {item.review && <p className="text-sm mt-2">{`"${item.review}"`}</p>}
               </li>
             ))}
-            <li className="min-h-40 border border-dashed border-gray-300 hover:bg-blue-400">
+            <li className="min-h-40 border border-dashed border-gray-300 hover:bg-blue-400 hover:border-solid hover:border-3">
               <Link
                 className="flex h-full min-h-40 w-full items-center justify-center p-4"
                 href="/collection/add"
@@ -144,6 +144,13 @@ export default async function CollectionPage(
             ))}
           </ul>
       </main>
+
+      <footer className="bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-sm z-10">
+        <span>&#169;2026 Shelfy</span>
+        <Link href="/contact" className="hover:underline">
+          Problems? Contact us!
+        </Link>
+      </footer>
     </div>
   );
 }

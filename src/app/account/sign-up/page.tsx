@@ -9,7 +9,7 @@ export default function SignUp() {
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-    <main className="grid border-4 border-amber-50 rounded-xl w-fit m-4 px-8 py-4">
+    <main className="grid border-4 border-amber-50 bg-white dark:bg-gray-800 rounded-xl w-fit m-4 px-8 py-4">
       <div className="py-2 text-center">
         <h2 className="text-3xl py-4">Create account</h2>
         <p>Please fill in the required fields to create your Shelfy account.</p>
@@ -78,11 +78,11 @@ export default function SignUp() {
         </div>
 
         <div className="flex justify-center gap-6 pt-6">
-          <button className="border-3 border-black dark:border-white rounded-lg text-xl px-6 w-fit hover:cursor-pointer hover:bg-blue-400 transition-colors" 
+          <button className="border-2 border-indigo-800 bg-blue-400 hover:bg-blue-600 text-black hover:text-white hover:border-white rounded-lg text-xl px-6 w-fit hover:cursor-pointer transition-colors" 
             type="submit" disabled={isPending}>
             {isPending ? 'Creating Account...' : 'Create Account'}
           </button>
-          <Link className="border-3 border-black dark:border-white rounded-lg text-xl px-6 w-fit hover:cursor-pointer hover:bg-red-800 transition-colors text-center"
+          <Link className="border-2 border-red-800 bg-red-400 hover:bg-red-800 text-black hover:text-white hover:border-white rounded-lg text-xl px-6 w-fit hover:cursor-pointer transition-colors text-center"
             href="/">Cancel</Link>
         </div>
       </form>
