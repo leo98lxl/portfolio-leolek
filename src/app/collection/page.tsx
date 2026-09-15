@@ -63,7 +63,7 @@ export default async function CollectionPage(
 
   const displayName = user.user_metadata?.name || user.email;
   const collectionItems = items ?? [];
-  const shelfCapacity = 18;
+  const shelfCapacity = 24;
   const emptySlotCount = Math.max(0, shelfCapacity - collectionItems.length - 1);
 
   type ShelfSlot =
@@ -80,7 +80,7 @@ export default async function CollectionPage(
     })),
   ];
 
-  const itemsPerTier = 6;
+  const itemsPerTier = 8;
   const tiers: ShelfSlot[][] = [];
   for (let i = 0; i < allSlots.length; i += itemsPerTier) {
     tiers.push(allSlots.slice(i, i + itemsPerTier));
@@ -134,47 +134,39 @@ export default async function CollectionPage(
           <div className="relative mx-auto max-w-5xl mb-12">
 
             {/* Main Cabinet Frame with detailed stiles and inner shadow */}
-            <div className="relative rounded-md border-t-[10px] border-x-[12px] sm:border-t-[14px] sm:border-x-[16px] border-slate-300 dark:border-zinc-700 ring-1 ring-slate-400/60 dark:ring-zinc-600/70 bg-slate-100/70 dark:bg-zinc-900/60 shadow-2xl overflow-hidden">
+            <div className="relative rounded-md border-t-[10px] border-x-[12px] sm:border-t-[14px] sm:border-x-[16px] border-slate-200 dark:border-zinc-700 ring-1 ring-slate-400/60 dark:ring-zinc-600/70 bg-slate-100/70 dark:bg-zinc-900/60 shadow-2xl overflow-hidden">
               {tiers.map((tier, tierIdx) => (
                 <div key={tierIdx} className="relative">
                   {/* Shelf Compartment with standing books and interior wall shadow */}
-                  <div className="pt-6 pb-2 px-3 sm:px-6 shadow-[inset_0_4px_12px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_6px_16px_rgba(0,0,0,0.5)]">
-                    <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 sm:gap-6 items-end">
+                  <div className="pt-6 pb-2 px-3 sm:px-6 shadow-[inset_0_4px_12px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_6px_16px_rgba(0,0,0,0.5)] bg-slate-300 dark:bg-gray-800">
+                    <ul className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-1 sm:gap-2 items-end">
                       {tier.map((slot) => {
                         if (slot.type === 'item') {
                           const item = slot.item;
                           return (
-                            <li key={item.id} className="group flex flex-col items-center w-full">
-                              {/* 3D Book Volume standing on the shelf */}
-                              <div className="relative w-full aspect-[2/3] rounded-r-md rounded-l-xs overflow-hidden shadow-[3px_6px_12px_rgba(0,0,0,0.18)] dark:shadow-[4px_8px_16px_rgba(0,0,0,0.6)] transition-all duration-200 group-hover:-translate-y-2 group-hover:shadow-[6px_14px_22px_rgba(0,0,0,0.28)] dark:group-hover:shadow-[6px_14px_24px_rgba(0,0,0,0.8)] bg-slate-200 dark:bg-zinc-800">
-                                {/* Realistic Book Spine lighting gradient (crease on the left) */}
-                                <div className="absolute inset-y-0 left-0 w-2.5 bg-gradient-to-r from-black/25 via-white/20 to-transparent pointer-events-none z-10" />
-
-                                {item.cover_url ? (
-                                  <img
+                            <li key={item.id} className="group flex flex-col items-center w-full" tabIndex={0}>
+                              {/* Narrow spine with the cover as its color and texture */}
+                              <div className="relative mx-auto h-48 w-10 overflow-hidden rounded-r-md rounded-l-xs bg-slate-300 shadow-[3px_6px_12px_rgba(0,0,0,0.18)] transition-all duration-200 group-hover:-translate-y-2 group-hover:shadow-[6px_14px_22px_rgba(0,0,0,0.28)] dark:bg-zinc-800 sm:h-56 sm:w-12">
+                                {item.cover_url && (
+                                  <Image
                                     src={item.cover_url}
-                                    alt={`Book cover for ${item.title}`}
+                                    alt=""
+                                    width={60}
+                                    height={60}
                                     loading="lazy"
-                                    className="w-full h-full object-cover"
+                                    className="absolute inset-0 h-full w-full object-cover opacity-65 blur-[1px] scale-105"
                                   />
-                                ) : (
-                                  <div className="w-full h-full flex flex-col items-center justify-center p-2 text-center">
-                                    <Image
-                                      className="opacity-40 dark:invert mb-1"
-                                      src="/book-dashed.svg"
-                                      alt="No book cover available"
-                                      width={40}
-                                      height={40}
-                                    />
-                                    <span className="text-[10px] font-semibold text-slate-500 dark:text-zinc-400 line-clamp-2">
-                                      {item.title}
-                                    </span>
-                                  </div>
                                 )}
+
+                                <div className="absolute inset-0 bg-black/25" />
+                                <div className="absolute inset-y-0 left-0 z-10 w-1.5 bg-gradient-to-r from-black/40 via-white/20 to-transparent" />
+                                <span className="absolute inset-0 z-10 flex items-center justify-center px-1 text-center text-xs font-semibold leading-tight text-white drop-shadow-md [writing-mode:vertical-rl] [text-orientation:mixed] sm:text-sm">
+                                  {item.title}
+                                </span>
 
                                 {/* Hover Review/Details Overlay */}
                                 {item.review && (
-                                  <div className="absolute inset-0 bg-black/80 text-white p-3 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-center items-center text-center backdrop-blur-xs z-20 pointer-events-none">
+                                  <div className="absolute inset-0 bg-black/80 text-white p-3 text-xs opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 flex flex-col justify-center items-center text-center backdrop-blur-xs z-20 pointer-events-none">
                                     <p className="italic line-clamp-4">&ldquo;{item.review}&rdquo;</p>
                                     {item.year && (
                                       <span className="text-[10px] text-zinc-400 mt-2">({item.year})</span>
@@ -184,24 +176,19 @@ export default async function CollectionPage(
 
                                 {/* Status Badge */}
                                 <span
-                                  className={`absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded-full text-[10px] font-semibold text-white shadow-xs backdrop-blur-xs z-10 ${
+                                  aria-label={item.status === 'read' ? 'Read' : 'Unread'}
+                                  className={`absolute right-1.5 top-1.5 z-10 h-2.5 w-2.5 rounded-full shadow-xs ring-1 ring-white/60 ${
                                     item.status === 'read'
-                                      ? 'bg-emerald-500/90'
-                                      : 'bg-slate-600/80'
+                                      ? 'bg-emerald-400'
+                                      : 'bg-slate-500'
                                   }`}
                                 >
-                                  {item.status === 'read' ? 'Read' : 'Unread'}
+                                  <span className="sr-only">{item.status === 'read' ? 'Read' : 'Unread'}</span>
                                 </span>
                               </div>
 
-                              {/* Text info under book */}
+                              {/* Supporting info under book */}
                               <div className="mt-2 text-center w-full px-1">
-                                <h2
-                                  className="text-xs font-semibold truncate text-slate-800 dark:text-zinc-200"
-                                  title={item.title}
-                                >
-                                  {item.title}
-                                </h2>
                                 <p className="text-[11px] text-slate-500 dark:text-zinc-400 truncate">
                                   {item.author}
                                 </p>
@@ -228,16 +215,16 @@ export default async function CollectionPage(
                               <Link
                                 href="/collection/add"
                                 aria-label="Add item to collection"
-                                className="group relative w-full aspect-[2/3] rounded-r-md rounded-l-xs border-2 border-dashed border-slate-400/90 dark:border-zinc-500 bg-slate-200/70 dark:bg-zinc-800/70 hover:bg-blue-400 dark:hover:bg-blue-500 hover:border-solid hover:border-blue-600 dark:hover:border-blue-300 flex flex-col items-center justify-center transition-all duration-150 hover:-translate-y-1 shadow-xs cursor-pointer"
+                                className="group relative mx-auto flex h-48 w-10 flex-col items-center justify-center overflow-hidden rounded-r-md rounded-l-xs border-2 border-dashed border-slate-400/90 bg-slate-200/70 shadow-xs transition-all duration-150 hover:-translate-y-1 hover:border-solid hover:border-blue-600 hover:bg-blue-400 dark:border-zinc-500 dark:bg-zinc-800/70 dark:hover:border-blue-300 dark:hover:bg-blue-500 sm:h-56 sm:w-12"
                               >
                                 <Image
                                   className="opacity-60 dark:invert group-hover:opacity-100 group-hover:brightness-0 group-hover:invert transition-all"
                                   src="/book-plus.svg"
                                   alt="Add book"
-                                  width={40}
-                                  height={40}
+                                  width={24}
+                                  height={24}
                                 />
-                                <span className="mt-2 text-[11px] font-bold text-slate-600 dark:text-zinc-300 group-hover:text-white transition-colors">
+                                <span className="mt-1 text-[10px] font-bold text-slate-600 transition-colors [writing-mode:vertical-rl] dark:text-zinc-300 group-hover:text-white">
                                   Add Book
                                 </span>
                               </Link>
@@ -253,7 +240,7 @@ export default async function CollectionPage(
                             className="flex flex-col items-center w-full"
                             aria-hidden="true"
                           >
-                            <div className="w-full aspect-[2/3] rounded-r-md rounded-l-xs border-2 border-dashed border-slate-300 dark:border-zinc-600 bg-slate-200/60 dark:bg-zinc-800/60 flex items-center justify-center shadow-xs">
+                            <div className="mx-auto flex h-48 w-10 items-center justify-center rounded-r-md rounded-l-xs border-2 border-dashed border-slate-300 bg-slate-200/60 shadow-xs dark:border-zinc-600 dark:bg-zinc-800/60 sm:h-56 sm:w-12">
                               <div className="w-2 h-2 rounded-full bg-slate-400 dark:bg-zinc-500" />
                             </div>
                             <div className="mt-2 h-8" aria-hidden="true" />
