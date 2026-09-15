@@ -8,36 +8,53 @@ export default function SignUp() {
   const [state, formAction, isPending] = useActionState(signup, null);
 
   return (
-    <div>
-      <h2>Welcome!</h2>
-      <p>Please fill in the required fields to create your Media Shelf account.</p>
+    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <main className="grid border-4 border-amber-50 rounded-xl w-fit m-4 px-8 py-4">
+      <div className="py-2 text-center">
+        <h2 className="text-3xl py-4">Create account</h2>
+        <p>Please fill in the required fields to create your Shelfy account.</p>
+      </div>
 
       {state?.error && (
-        <p style={{ color: 'red' }} role="alert">
+        <p className="text-red-800" role="alert">
           {state.error}
         </p>
       )}
 
       {state?.message && (
-        <p style={{ color: 'green' }} role="status">
+        <p className="text-green-800" role="status">
           {state.message}
         </p>
       )}
 
       <form action={formAction}>
-        <div>
-          <label htmlFor="name">Your Name (optional)</label>
-          <input type="text" id="name" name="name" placeholder="User name" />
+        <div className="grid py-2">
+          <label className="py-2 text-xl" htmlFor="name">Your Name (optional)</label>
+          <input 
+            className="border-2 rounded-sm p-2 w-fit" 
+            type="text" 
+            id="name" 
+            name="name" 
+            placeholder="User name" 
+            />
         </div>
 
-        <div>
-          <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" name="email" placeholder="User email" required />
+        <div className="grid py-2">
+          <label className="py-2 text-xl" htmlFor="email">Your Email</label>
+          <input 
+            className="border-2 rounded-sm p-2 w-fit" 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="user@useremail.com"
+            required 
+            />
         </div>
 
-        <div>
-          <label htmlFor="password">Your Password</label>
+        <div className="grid py-2">
+          <label className="py-2 text-xl" htmlFor="password">Your Password</label>
           <input
+            className="border-2 rounded-sm p-2 w-fit"
             type="password"
             id="password"
             name="password"
@@ -47,9 +64,10 @@ export default function SignUp() {
           />
         </div>
 
-        <div>
-          <label htmlFor="confirm-password">Confirm Password</label>
+        <div className="grid py-2">
+          <label className="py-2 text-xl" htmlFor="confirm-password">Confirm Password</label>
           <input
+            className="border-2 rounded-sm p-2 w-fit"
             type="password"
             id="confirm-password"
             name="confirm-password"
@@ -59,11 +77,16 @@ export default function SignUp() {
           />
         </div>
 
-        <button type="submit" disabled={isPending}>
-          {isPending ? 'Creating Account...' : 'Create Account'}
-        </button>
-        <Link href="/">Cancel</Link>
+        <div className="flex justify-center gap-6 pt-6">
+          <button className="border-3 border-black dark:border-white rounded-lg text-xl px-6 w-fit hover:cursor-pointer hover:bg-blue-400 transition-colors" 
+            type="submit" disabled={isPending}>
+            {isPending ? 'Creating Account...' : 'Create Account'}
+          </button>
+          <Link className="border-3 border-black dark:border-white rounded-lg text-xl px-6 w-fit hover:cursor-pointer hover:bg-red-800 transition-colors text-center"
+            href="/">Cancel</Link>
+        </div>
       </form>
+    </main>
     </div>
   );
 }
