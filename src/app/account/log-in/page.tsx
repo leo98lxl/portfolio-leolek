@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useActionState } from 'react';
 import Link from 'next/link';
 import { login } from '../actions';
@@ -9,7 +10,17 @@ export default function LogIn() {
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-    <main className="grid border-4 border-amber-50 bg-white dark:bg-gray-800 rounded-xl w-fit m-4 px-8 py-4">
+    {/* Background Image */}
+      <div className="absolute inset-0 z-0 bg-black">
+        <Image
+          src="/IMG_4446.jpg"
+          alt="Blurry background image showing completed collection"
+          fill
+          className="object-cover blur-sm opacity-80 scale-105"
+          priority
+        />
+      </div>
+      <main className="relative z-10 grid border-4 border-black dark:border-white bg-white dark:bg-gray-800 shadow-2xl rounded-xl w-fit m-4 px-8 py-4">
       <div className="py-2 text-center">
         <h2 className="text-3xl py-4">Welcome back!</h2>
       </div>
@@ -56,6 +67,13 @@ export default function LogIn() {
           </div>
       </form>
     </main>
+    {/* Footer */}
+      <footer className="absolute bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-sm z-10">
+        <span>&#169;2026 Shelfy</span>
+          <p>Problems?{" "}
+        <a href="mailto:leo.leksell@live.se" className="underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact us!</a>  
+        </p>
+      </footer>
     </div>
   );
 }
