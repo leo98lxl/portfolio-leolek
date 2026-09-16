@@ -21,9 +21,10 @@ export default function LogIn() {
         />
       </div>
       
-      <main className="relative my-auto z-10 grid border-4 border-black dark:border-white bg-white dark:bg-gray-800 shadow-2xl rounded-xl w-full max-w-md mx-4 px-8 py-4">
+    <main className="relative my-auto z-10 grid border-3 border-slate-200 dark:border-zinc-700 bg-white dark:bg-gray-800 shadow-2xl rounded-xl w-[calc(100%-2rem)] max-w-md px-5 sm:px-8 py-6">
       <div className="py-2 text-center">
-        <h2 className="text-3xl py-4">Welcome back!</h2>
+        <h2 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-6 text-black dark:text-white">Welcome back!</h2>
+        <p>Please enter your email and password to access your shelf.</p>
       </div>
 
       {state?.error && (
@@ -38,7 +39,7 @@ export default function LogIn() {
             Your Email <span className="text-red-500" aria-hidden="true">*</span>
           </label>
           <input 
-            className="border-2 rounded-sm p-2" 
+            className="border-2 border-slate-200 dark:border-zinc-700 rounded-sm p-2 w-full" 
             type="email" 
             id="email" 
             name="email" 
@@ -52,7 +53,7 @@ export default function LogIn() {
             Your Password <span className="text-red-500" aria-hidden="true">*</span>
           </label>
           <input
-            className="border-2 rounded-sm p-2"
+            className="border-2 border-slate-200 dark:border-zinc-700 rounded-sm p-2 w-full"
             type="password"
             id="password"
             name="password"
@@ -62,18 +63,18 @@ export default function LogIn() {
           />
         </div>
         
-        <div className="flex justify-center gap-6 pt-6">
-          <button className="border-2 border-indigo-800 bg-blue-400 hover:bg-blue-600 text-black hover:text-white hover:border-white rounded-lg text-lg px-6 w-fit min-w-35 hover:cursor-pointer transition-colors"
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 pt-6">
+          <button className="flex-1 flex items-center justify-center gap-2 border-2 border-indigo-800 bg-blue-400 hover:bg-blue-600 text-black hover:text-white hover:border-white hover:cursor-pointer text-lg font-medium py-3 px-6 rounded-full transition-colors"
             type="submit" disabled={isPending}>
             {isPending ? 'Logging in...' : 'Log in'}
           </button>
-          <Link className="border-2 border-red-800 bg-red-400 text-black hover:text-white hover:border-white rounded-lg text-lg px-6 w-fit hover:cursor-pointer hover:bg-red-800 transition-colors text-center" 
+          <Link className="flex-1 flex items-center justify-center gap-2 border-2 border-stone-800 bg-gray-400 hover:bg-gray-600 text-black hover:text-white hover:border-white text-lg font-medium py-3 px-6 rounded-full transition-colors" 
             href="/">Cancel</Link>
           </div>
       </form>
     </main>
     {/* Footer */}
-      <footer className="mt-auto bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-sm z-10">
+      <footer className="mt-auto bottom-0 w-full flex flex-wrap justify-between items-center px-4 sm:px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-xs sm:text-sm z-10 gap-2">
         <span>&#169;2026 Shelfy</span>
           <p>Problems?{" "}
         <a href="mailto:leo.leksell@live.se" className="underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact us!</a>  

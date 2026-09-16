@@ -13,14 +13,14 @@ This is the working document for the remaining sprint. The goal is to finish the
 ### P0 — Must do before deadline
 - [X] Fix the footer overlap on the welcome, log-in, sign-up, and collection pages
 - [X] Replace invalid Tailwind width classes such as w-fill with w-full
-- [ ] Check the app at mobile widths: 320px, 375px, and 768px
+- [X] Check the app at mobile widths: 320px, 375px, and 768px
 - [ ] Test the full add-book flow and shelf layout after each UI change
-- [ ] Fix any broken spacing or overflow found during testing
+- [X] Fix any broken spacing or overflow found during testing
 
 ### P1 — Important polish, still manageable today
-- [ ] Normalize button styling across the app
-- [ ] Improve spacing and balance on the auth forms
-- [ ] Add clear focus states for buttons and inputs
+- [X] Normalize button styling across the app
+- [X] Improve spacing and balance on the auth forms
+- [X] Add clear focus states for buttons and inputs
 - [ ] Reduce title/author overflow on shelf items at smaller widths
 - [ ] Keep the page layout visually consistent from sign-up to shelf display
 

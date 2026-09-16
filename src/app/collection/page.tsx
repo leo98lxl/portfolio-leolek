@@ -100,7 +100,7 @@ export default async function CollectionPage(
         </p>
         <Link
           href="/collection"
-          className="flex items-center justify-center gap-2 border-2 border-stone-800 dark:border-stone-300 bg-gray-400 hover:bg-gray-600 text-black hover:text-white hover:border-white hover:cursor-pointer text-sm font-semibold py-2 px-5 rounded-full transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 border-2 border-stone-800 bg-gray-400 hover:bg-gray-600 text-black hover:text-white hover:border-white hover:cursor-pointer text-lg font-medium py-3 px-6 rounded-full transition-colors"
         >
           Retry
         </Link>
@@ -111,15 +111,15 @@ export default async function CollectionPage(
   return ( 
     <div className="min-h-screen flex flex-col justify-between bg-white text-black dark:text-white dark:bg-gray-900 font-semibold text-sm z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
-        <header className="flex justify-between items-center pb-6 mb-8 border-b border-slate-200 dark:border-zinc-800">
+        <header className="flex flex-wrap justify-between items-center gap-4 pb-6 mb-8 border-b border-slate-200 dark:border-zinc-800">
           <div>
             <h1 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Your Shelfy</h1>
-            <p className="text-sm text-slate-500 dark:text-zinc-400 mt-1">Logged in as <span className="font-medium text-slate-700 dark:text-zinc-200">{displayName}</span></p>
+            <p className="text-sm text-slate-500 dark:text-zinc-400 mt-1">Logged in as <span className="font-medium text-slate-700 dark:text-zinc-200 truncate inline-block max-w-50 sm:max-w-none align-bottom">{displayName}</span></p>
           </div>
           <form action={logout}>
             <button
               type="submit"
-              className="flex items-center justify-center gap-2 border-2 border-stone-800 dark:border-stone-300 bg-gray-400 hover:bg-gray-600 text-black hover:text-white hover:border-white hover:cursor-pointer text-sm font-semibold py-2 px-5 rounded-full transition-colors"
+              className="flex-1 flex items-center justify-center gap-2 border-2 border-stone-800 bg-gray-400 hover:bg-gray-600 text-black hover:text-white hover:border-white hover:cursor-pointer text-lg font-medium py-3 px-6 rounded-full transition-colors"
             >
               Log Out
             </button>
@@ -128,7 +128,7 @@ export default async function CollectionPage(
 
         <main className="mt-8">
           {/* Centered filter & sort toolbar */}
-          <div className="flex justify-center gap-3 mb-10">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
               <SortByOrder />
               <SortByStatus />
               <SortByDirection />
@@ -164,7 +164,7 @@ export default async function CollectionPage(
 
                                 <div className="absolute inset-0 bg-black/25" />
                                 <div className="absolute inset-y-0 left-0 z-10 w-1.5 bg-linear-to-r from-black/40 via-white/20 to-transparent" />
-                                <span className="absolute inset-0 z-10 flex items-center justify-center px-1 text-center text-xs font-semibold leading-tight text-white drop-shadow-md [writing-mode:vertical-rl] [text-orientation:mixed] sm:text-sm">
+                                <span className="absolute inset-0 z-10 flex items-center justify-center px-1 text-center text-[10px] sm:text-xs font-semibold leading-tight text-white drop-shadow-md [writing-mode:vertical-rl] [text-orientation:mixed] line-clamp-1 overflow-hidden">
                                   {item.title}
                                 </span>
 
@@ -283,7 +283,7 @@ export default async function CollectionPage(
         </main>
       </div>
 
-      <footer className="mt-auto bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-sm z-10">
+      <footer className="mt-auto bottom-0 w-full flex flex-wrap justify-between items-center px-4 sm:px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-xs sm:text-sm z-10 gap-2">
         <span>&#169;2026 Shelfy</span>
           <p>Problems?{" "}
         <a href="mailto:leo.leksell@live.se" className="underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact us!</a>  

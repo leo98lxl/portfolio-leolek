@@ -117,9 +117,9 @@ export default function AddItemForm() {
     };
 
     return (
-        <div className="grid border-4 border-amber-50 rounded-xl min-w-xs max-w-[1920px] m-4 px-8 py-4 bg-white text-black dark:text-white dark:bg-gray-800">
+        <div className="grid border-3 border-slate-200 dark:border-zinc-700 bg-white dark:bg-gray-800 shadow-2xl rounded-xl w-full mx-auto px-4 sm:px-8 py-6 text-black dark:text-white">
             <div className="py-2 text-center">
-                <h2 className="text-3xl py-4">Add to Collection</h2>
+                <h2 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-6 text-black dark:text-white">Add to Collection</h2>
                 <p>Use the search field to look for a book. A successful match fills in all the required info fields for you.</p>
             </div>
 
@@ -137,7 +137,7 @@ export default function AddItemForm() {
                 <div className="relative flex flex-col">
                     <label className="py-2 text-xl" htmlFor="search">Search</label>
                     <input 
-                        className="border-2 rounded-sm p-2 w-full" 
+                        className="border-2 border-slate-200 dark:border-zinc-700 rounded-sm p-2 w-full" 
                         ref={searchInputRef}
                         type="text" 
                         id="search" 
@@ -207,7 +207,7 @@ export default function AddItemForm() {
                         <label className="py-2 text-xl" htmlFor="title">
                             Title <span className="text-red-500" aria-hidden="true">*</span>
                         </label>
-                        <input className="border-2 rounded-sm px-2 w-fit"
+                        <input className="border-2 border-slate-200 dark:border-zinc-700 rounded-sm px-2 w-full"
                             type="text"
                             id="title"
                             name="title"
@@ -222,7 +222,7 @@ export default function AddItemForm() {
                         <label className="py-2 text-xl" htmlFor="author">
                             Author <span className="text-red-500" aria-hidden="true">*</span>
                         </label>
-                        <input className="border-2 rounded-sm px-2 w-fit"
+                        <input className="border-2 border-slate-200 dark:border-zinc-700 rounded-sm px-2 w-full"
                             type="text"
                             id="author"
                             name="author"
@@ -235,7 +235,7 @@ export default function AddItemForm() {
 
                     <div className="flex flex-col">
                         <label className="py-2 text-xl" htmlFor="year">Release year</label>
-                        <input className="border-2 rounded-sm px-2 w-fit"
+                        <input className="border-2 border-slate-200 dark:border-zinc-700 rounded-sm px-2 w-full"
                             type="number"
                             id="year"
                             name="year"
@@ -296,15 +296,20 @@ export default function AddItemForm() {
                 </div>
 
                 <label className="py-2 text-xl" htmlFor="review">Review</label>
-                <textarea className="col-span-full border-2 rounded-sm px-2" id="review" name="review" minLength={0} maxLength={200} 
+                <textarea 
+                    className="col-span-full border-2 border-slate-200 dark:border-zinc-700 rounded-sm px-2" 
+                    id="review" 
+                    name="review" 
+                    minLength={0} 
+                    maxLength={200} 
                     placeholder="Write a review (up to 200 characters)">
                 </textarea>
                 
-                <div className="flex justify-center gap-6 pt-6">
-                    <button className="border-2 border-indigo-800 bg-blue-400 hover:bg-blue-600 text-black hover:text-white hover:border-white rounded-lg text-xl px-6 w-fit hover:cursor-pointer transition-colors" 
+                <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 pt-6">
+                    <button className="flex-1 flex items-center justify-center gap-2 border-2 border-indigo-800 bg-blue-400 hover:bg-blue-600 text-black hover:text-white hover:border-white hover:cursor-pointer text-lg font-medium py-3 px-6 rounded-full transition-colors"
                         type="submit" disabled={isPending}>{isPending ? "Adding..." : "Add to Collection"}
                     </button>
-                    <Link className="border-2 border-red-800 bg-red-400 hover:bg-red-800 text-black hover:text-white hover:border-white rounded-lg text-xl px-6 w-fit hover:cursor-pointer transition-colors text-center" 
+                    <Link className="flex-1 flex items-center justify-center gap-2 border-2 border-stone-800 bg-gray-400 hover:bg-gray-600 text-black hover:text-white hover:border-white text-lg font-medium py-3 px-6 rounded-full transition-colors"
                         href="/collection">Cancel
                     </Link>
                 </div>
