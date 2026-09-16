@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import { createClient } from '../utils/supabase/server';
 import { logout } from '../account/actions';
@@ -7,6 +8,11 @@ import Link from 'next/link';
 import SortByDirection from '../components/SortByDirection';
 import SortByOrder from '../components/SortByOrder';
 import SortByStatus from '../components/SortByStatus';
+
+export const metadata: Metadata = {
+  title: "Your Shelfy - Shelfy",
+  description: "Page showing your personal Shelfy collection",
+};
 
 type CollectionPageProps = {
   searchParams: Promise<{
@@ -103,7 +109,7 @@ export default async function CollectionPage(
   }
 
   return ( 
-    <div className="min-h-screen flex flex-col justify-between bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-100 transition-colors">
+    <div className="min-h-screen flex flex-col justify-between bg-white text-black dark:text-white dark:bg-gray-900 font-semibold text-sm z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         <header className="flex justify-between items-center pb-6 mb-8 border-b border-slate-200 dark:border-zinc-800">
           <div>
@@ -122,12 +128,10 @@ export default async function CollectionPage(
 
         <main className="mt-8">
           {/* Centered filter & sort toolbar */}
-          <div className="flex justify-center mb-10">
-            <div className="flex flex-wrap items-center justify-center gap-3 p-2.5 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-xs w-fit">
+          <div className="flex justify-center gap-3 mb-10">
               <SortByOrder />
               <SortByStatus />
               <SortByDirection />
-            </div>
           </div>
 
           {/* Enclosed Bookcase Furniture Unit */}
@@ -279,16 +283,10 @@ export default async function CollectionPage(
         </main>
       </div>
 
-      <footer className="w-full flex justify-between px-8 py-4 border-t border-slate-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md text-xs text-slate-500 dark:text-zinc-400">
+      <footer className="bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-sm z-10">
         <span>&#169;2026 Shelfy</span>
-        <p>
-          Problems?{" "}
-          <a
-            href="mailto:leo.leksell@live.se"
-            className="underline hover:text-slate-900 dark:hover:text-white transition-colors"
-          >
-            Contact us!
-          </a>
+          <p>Problems?{" "}
+        <a href="mailto:leo.leksell@live.se" className="underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact us!</a>  
         </p>
       </footer>
     </div>
