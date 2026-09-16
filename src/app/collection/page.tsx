@@ -150,7 +150,7 @@ export default async function CollectionPage(
                           return (
                             <li key={item.id} className="group flex flex-col items-center w-full" tabIndex={0}>
                               {/* Narrow spine with the cover as its color and texture */}
-                              <div className="relative mx-auto h-48 w-10 overflow-hidden rounded-r-md rounded-l-xs bg-slate-300 shadow-[3px_6px_12px_rgba(0,0,0,0.18)] transition-all duration-200 group-hover:-translate-y-2 group-hover:shadow-[6px_14px_22px_rgba(0,0,0,0.28)] dark:bg-zinc-800 sm:h-56 sm:w-12">
+                              <div className="relative mx-auto h-48 w-14 overflow-hidden rounded-r-md rounded-l-xs bg-slate-300 shadow-[3px_6px_12px_rgba(0,0,0,0.18)] transition-all duration-200 group-hover:-translate-y-2 group-hover:shadow-[6px_14px_22px_rgba(0,0,0,0.28)] dark:bg-zinc-800 sm:h-56 sm:w-16 md:w-16 lg:w-20">
                                 {item.cover_url && (
                                   <Image
                                     src={item.cover_url}
@@ -219,7 +219,7 @@ export default async function CollectionPage(
                               <Link
                                 href="/collection/add"
                                 aria-label="Add item to collection"
-                                className="group relative mx-auto flex h-48 w-10 flex-col items-center justify-center overflow-hidden rounded-r-md rounded-l-xs border-2 border-dashed border-slate-400/90 bg-slate-200/70 shadow-xs transition-all duration-150 hover:-translate-y-1 hover:border-solid hover:border-blue-600 hover:bg-blue-400 dark:border-zinc-500 dark:bg-zinc-800/70 dark:hover:border-blue-300 dark:hover:bg-blue-500 sm:h-56 sm:w-12"
+                                className="group relative mx-auto flex h-48 w-14 flex-col items-center justify-center overflow-hidden rounded-r-md rounded-l-xs border-2 border-dashed border-slate-400/90 bg-slate-200/70 shadow-xs transition-all duration-150 hover:-translate-y-1 hover:border-solid hover:border-blue-600 hover:bg-blue-400 dark:border-zinc-500 dark:bg-zinc-800/70 dark:hover:border-blue-300 dark:hover:bg-blue-500 sm:h-56 sm:w-16 md:w-16 lg:w-20"
                               >
                                 <Image
                                   className="opacity-60 dark:invert group-hover:opacity-100 group-hover:brightness-0 group-hover:invert transition-all"
@@ -244,7 +244,7 @@ export default async function CollectionPage(
                             className="flex flex-col items-center w-full"
                             aria-hidden="true"
                           >
-                            <div className="mx-auto flex h-48 w-10 items-center justify-center rounded-r-md rounded-l-xs border-2 border-dashed border-slate-300 bg-slate-200/60 shadow-xs dark:border-zinc-600 dark:bg-zinc-800/60 sm:h-56 sm:w-12">
+                            <div className="mx-auto flex h-48 w-14 items-center justify-center rounded-r-md rounded-l-xs border-2 border-dashed border-slate-300 bg-slate-200/60 shadow-xs dark:border-zinc-600 dark:bg-zinc-800/60 sm:h-56 sm:w-16 md:w-16 lg:w-20">
                               <div className="w-2 h-2 rounded-full bg-slate-400 dark:bg-zinc-500" />
                             </div>
                             <div className="mt-2 h-8" aria-hidden="true" />
@@ -283,7 +283,7 @@ export default async function CollectionPage(
         </main>
       </div>
 
-      <footer className="mt-auto bottom-0 w-full flex flex-wrap justify-between items-center px-4 sm:px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-xs sm:text-sm z-10 gap-2">
+      <footer className="mt-auto bottom-0 w-full flex flex-wrap justify-between items-center px-4 sm:px-6 py-3 bg-slate-50 text-black dark:text-white dark:bg-gray-800 font-semibold text-xs sm:text-sm z-10 gap-2">
         <span>&#169;2026 Shelfy</span>
           <p>Problems?{" "}
         <a href="mailto:leo.leksell@live.se" className="underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact us!</a>  

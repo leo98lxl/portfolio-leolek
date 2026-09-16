@@ -21,7 +21,7 @@ export default function LogIn() {
         />
       </div>
       
-    <main className="relative my-auto z-10 grid border-3 border-slate-200 dark:border-zinc-700 bg-white dark:bg-gray-800 shadow-2xl rounded-xl w-[calc(100%-2rem)] max-w-md px-5 sm:px-8 py-6">
+    <main className="relative my-auto z-10 grid border-3 border-slate-200 dark:border-zinc-700 bg-slate-50 dark:bg-gray-800 shadow-2xl rounded-xl w-[calc(100%-2rem)] max-w-md px-5 sm:px-8 py-6">
       <div className="py-2 text-center">
         <h2 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-6 text-black dark:text-white">Welcome back!</h2>
         <p>Please enter your email and password to access your shelf.</p>
@@ -74,7 +74,7 @@ export default function LogIn() {
       </form>
     </main>
     {/* Footer */}
-      <footer className="mt-auto bottom-0 w-full flex flex-wrap justify-between items-center px-4 sm:px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-xs sm:text-sm z-10 gap-2">
+      <footer className="mt-auto bottom-0 w-full flex flex-wrap justify-between items-center px-4 sm:px-6 py-3 bg-slate-50 text-black dark:text-white dark:bg-gray-800 font-semibold text-xs sm:text-sm z-10 gap-2">
         <span>&#169;2026 Shelfy</span>
           <p>Problems?{" "}
         <a href="mailto:leo.leksell@live.se" className="underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact us!</a>  

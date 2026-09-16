@@ -117,7 +117,7 @@ export default function AddItemForm() {
     };
 
     return (
-        <div className="grid border-3 border-slate-200 dark:border-zinc-700 bg-white dark:bg-gray-800 shadow-2xl rounded-xl w-full mx-auto px-4 sm:px-8 py-6 text-black dark:text-white">
+        <div className="grid border-3 border-slate-200 dark:border-zinc-700 bg-slate-100 dark:bg-gray-800 shadow-2xl rounded-xl w-full mx-auto px-4 sm:px-8 py-6 text-black dark:text-white">
             <div className="py-2 text-center">
                 <h2 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-6 text-black dark:text-white">Add to Collection</h2>
                 <p>Use the search field to look for a book. A successful match fills in all the required info fields for you.</p>
@@ -158,7 +158,7 @@ export default function AddItemForm() {
                     {searchError && <p className="text-red-800">{searchError}</p>}
 
                     {searchResults.length > 0 && (
-                        <ul className="absolute top-full left-0 right-0 z-20 mt-0.5 bg-white dark:bg-zinc-900 border-2 border-black dark:border-white shadow-xl max-h-64 overflow-y-auto divide-y divide-gray-200">
+                        <ul className="absolute top-full left-0 right-0 z-20 mt-0.5 bg-slate-50 dark:bg-zinc-900 border-2 border-black dark:border-white shadow-xl max-h-64 overflow-y-auto divide-y divide-gray-200">
                             {searchResults.map((result) => (
                                 <li 
                                     className="flex items-center justify-between uppercase p-2 cursor-pointer hover:bg-blue-400 transition-colors"
