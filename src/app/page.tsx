@@ -7,7 +7,7 @@ export default function Home() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0 bg-black">
         <Image
-          src="/dvd-movie-collection-studio-shot-21822003.jpg"
+          src="/IMG_4446.jpg"
           alt="Blurry background image showing completed collection"
           fill
           className="object-cover blur-sm opacity-80 scale-105"
@@ -43,9 +43,9 @@ export default function Home() {
       {/* Footer */}
       <footer className="absolute bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-sm z-10">
         <span>&#169;2026 Shelfy</span>
-        <Link href="/contact" className="hover:underline">
-          Problems? Contact us!
-        </Link>
+          <p>Problems?{" "}
+        <a href="mailto:leo.leksell@live.se" className="underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact us!</a>  
+        </p>
       </footer>
     </div>
   );

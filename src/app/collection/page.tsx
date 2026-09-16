@@ -134,7 +134,7 @@ export default async function CollectionPage(
           <div className="relative mx-auto max-w-5xl mb-12">
 
             {/* Main Cabinet Frame with detailed stiles and inner shadow */}
-            <div className="relative rounded-md border-t-[10px] border-x-[12px] sm:border-t-[14px] sm:border-x-[16px] border-slate-200 dark:border-zinc-700 ring-1 ring-slate-400/60 dark:ring-zinc-600/70 bg-slate-100/70 dark:bg-zinc-900/60 shadow-2xl overflow-hidden">
+            <div className="relative rounded-md border-t-10 border-x-12 sm:border-t-14 sm:border-x-16 border-slate-200 dark:border-zinc-700 ring-1 ring-slate-400/60 dark:ring-zinc-600/70 bg-slate-100/70 dark:bg-zinc-900/60 shadow-2xl overflow-hidden">
               {tiers.map((tier, tierIdx) => (
                 <div key={tierIdx} className="relative">
                   {/* Shelf Compartment with standing books and interior wall shadow */}
@@ -159,7 +159,7 @@ export default async function CollectionPage(
                                 )}
 
                                 <div className="absolute inset-0 bg-black/25" />
-                                <div className="absolute inset-y-0 left-0 z-10 w-1.5 bg-gradient-to-r from-black/40 via-white/20 to-transparent" />
+                                <div className="absolute inset-y-0 left-0 z-10 w-1.5 bg-linear-to-r from-black/40 via-white/20 to-transparent" />
                                 <span className="absolute inset-0 z-10 flex items-center justify-center px-1 text-center text-xs font-semibold leading-tight text-white drop-shadow-md [writing-mode:vertical-rl] [text-orientation:mixed] sm:text-sm">
                                   {item.title}
                                 </span>
@@ -251,7 +251,7 @@ export default async function CollectionPage(
                   </div>
 
                   {/* Horizontal Shelf Plank under each row */}
-                  <div className="relative h-3.5 w-full bg-gradient-to-b from-slate-200 via-slate-300 to-slate-400 dark:from-zinc-700 dark:via-zinc-700 dark:to-zinc-800 border-t border-white/70 dark:border-zinc-500/40 shadow-[0_3px_6px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_10px_rgba(0,0,0,0.4)]">
+                  <div className="relative h-3.5 w-full bg-linear-to-b from-slate-200 via-slate-300 to-slate-400 dark:from-zinc-700 dark:via-zinc-700 dark:to-zinc-800 border-t border-white/70 dark:border-zinc-500/40 shadow-[0_3px_6px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_10px_rgba(0,0,0,0.4)]">
                     <div className="absolute -bottom-1 inset-x-0 h-1 bg-slate-400/80 dark:bg-zinc-900/90" />
                   </div>
                 </div>
@@ -261,7 +261,7 @@ export default async function CollectionPage(
             {/* Bookcase Legs & Floor Shadow */}
             <div className="relative flex justify-between items-start px-8 sm:px-14 -mt-0.5">
               {/* Left Leg */}
-              <div className="w-6 sm:w-8 h-8 sm:h-10 bg-gradient-to-b from-slate-300 via-slate-400 to-slate-500 dark:from-zinc-700 dark:via-zinc-800 dark:to-zinc-900 rounded-b-md shadow-lg border-x border-b border-slate-400/80 dark:border-zinc-600 flex flex-col justify-between items-center py-1">
+              <div className="w-6 sm:w-8 h-8 sm:h-10 bg-linear-to-b from-slate-300 via-slate-400 to-slate-500 dark:from-zinc-700 dark:via-zinc-800 dark:to-zinc-900 rounded-b-md shadow-lg border-x border-b border-slate-400/80 dark:border-zinc-600 flex flex-col justify-between items-center py-1">
                 <div className="w-full h-0.5 bg-white/40 dark:bg-zinc-500/40" />
                 <div className="w-3/4 h-1 bg-slate-600/30 dark:bg-black/50 rounded-xs" />
               </div>
@@ -270,7 +270,7 @@ export default async function CollectionPage(
               <div className="flex-1 h-3 mt-4 bg-black/20 dark:bg-black/60 blur-xs rounded-full mx-6" />
 
               {/* Right Leg */}
-              <div className="w-6 sm:w-8 h-8 sm:h-10 bg-gradient-to-b from-slate-300 via-slate-400 to-slate-500 dark:from-zinc-700 dark:via-zinc-800 dark:to-zinc-900 rounded-b-md shadow-lg border-x border-b border-slate-400/80 dark:border-zinc-600 flex flex-col justify-between items-center py-1">
+              <div className="w-6 sm:w-8 h-8 sm:h-10 bg-linear-to-b from-slate-300 via-slate-400 to-slate-500 dark:from-zinc-700 dark:via-zinc-800 dark:to-zinc-900 rounded-b-md shadow-lg border-x border-b border-slate-400/80 dark:border-zinc-600 flex flex-col justify-between items-center py-1">
                 <div className="w-full h-0.5 bg-white/40 dark:bg-zinc-500/40" />
                 <div className="w-3/4 h-1 bg-slate-600/30 dark:bg-black/50 rounded-xs" />
               </div>
@@ -281,9 +281,15 @@ export default async function CollectionPage(
 
       <footer className="w-full flex justify-between px-8 py-4 border-t border-slate-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md text-xs text-slate-500 dark:text-zinc-400">
         <span>&#169;2026 Shelfy</span>
-        <Link href="/contact" className="hover:text-slate-900 dark:hover:text-white transition-colors">
-          Problems? Contact us!
-        </Link>
+        <p>
+          Problems?{" "}
+          <a
+            href="mailto:leo.leksell@live.se"
+            className="underline hover:text-slate-900 dark:hover:text-white transition-colors"
+          >
+            Contact us!
+          </a>
+        </p>
       </footer>
     </div>
   );
