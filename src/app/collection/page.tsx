@@ -283,7 +283,7 @@ export default async function CollectionPage(
         </main>
       </div>
 
-      <footer className="bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-sm z-10">
+      <footer className="mt-auto bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-sm z-10">
         <span>&#169;2026 Shelfy</span>
           <p>Problems?{" "}
         <a href="mailto:leo.leksell@live.se" className="underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact us!</a>  

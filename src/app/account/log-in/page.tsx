@@ -20,7 +20,8 @@ export default function LogIn() {
           priority
         />
       </div>
-      <main className="relative z-10 grid border-4 border-black dark:border-white bg-white dark:bg-gray-800 shadow-2xl rounded-xl w-full max-w-md mx-4 px-8 py-4">
+      
+      <main className="relative my-auto z-10 grid border-4 border-black dark:border-white bg-white dark:bg-gray-800 shadow-2xl rounded-xl w-full max-w-md mx-4 px-8 py-4">
       <div className="py-2 text-center">
         <h2 className="text-3xl py-4">Welcome back!</h2>
       </div>
@@ -37,7 +38,7 @@ export default function LogIn() {
             Your Email <span className="text-red-500" aria-hidden="true">*</span>
           </label>
           <input 
-            className="border-2 rounded-sm p-2 w-fill" 
+            className="border-2 rounded-sm p-2" 
             type="email" 
             id="email" 
             name="email" 
@@ -51,7 +52,7 @@ export default function LogIn() {
             Your Password <span className="text-red-500" aria-hidden="true">*</span>
           </label>
           <input
-            className="border-2 rounded-sm p-2 w-fill"
+            className="border-2 rounded-sm p-2"
             type="password"
             id="password"
             name="password"
@@ -72,7 +73,7 @@ export default function LogIn() {
       </form>
     </main>
     {/* Footer */}
-      <footer className="absolute bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-sm z-10">
+      <footer className="mt-auto bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-sm z-10">
         <span>&#169;2026 Shelfy</span>
           <p>Problems?{" "}
         <a href="mailto:leo.leksell@live.se" className="underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact us!</a>  

@@ -16,14 +16,21 @@ export default function Home() {
       </div>
 
       {/* Main Content Card */}
-      <main className="relative z-10 bg-white border-4 border-black dark:bg-gray-800 dark:border-white p-12 rounded-xl shadow-2xl flex flex-col items-center text-center max-w-lg w-full mx-4">
+      <main className="relative z-10 my-auto bg-white border-4 border-black dark:bg-gray-800 dark:border-white p-12 rounded-xl shadow-2xl flex flex-col items-center text-center max-w-lg w-full mx-4">
         <h1 className="text-4xl font-bold mb-6 text-black dark:text-white">
           Welcome to Shelfy!
         </h1>
         <p className="text-xl text-gray-800 mb-10 dark:text-white">
           The best place to store your collection digitally!
         </p>
-
+          <Image
+          src="/screenshot-shelf.png"
+          alt="Example image showing Shelfy layout"
+          width={1280}
+          height={720}
+          className="m-4"
+          priority
+          />
         <div className="flex flex-col gap-5 w-full px-10">
           <Link
             href="/account/sign-up"
@@ -41,7 +48,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="absolute bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-sm z-10">
+      <footer className="mt-auto bottom-0 w-full flex justify-between px-6 py-3 bg-white text-black dark:text-white dark:bg-gray-800 font-semibold text-sm z-10">
         <span>&#169;2026 Shelfy</span>
           <p>Problems?{" "}
         <a href="mailto:leo.leksell@live.se" className="underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact us!</a>  
