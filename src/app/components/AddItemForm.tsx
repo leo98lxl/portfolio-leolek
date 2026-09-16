@@ -204,7 +204,9 @@ export default function AddItemForm() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div className="flex flex-col">
                         
-                        <label className="py-2 text-xl" htmlFor="title">Title</label>
+                        <label className="py-2 text-xl" htmlFor="title">
+                            Title <span className="text-red-500" aria-hidden="true">*</span>
+                        </label>
                         <input className="border-2 rounded-sm px-2 w-fit"
                             type="text"
                             id="title"
@@ -217,7 +219,9 @@ export default function AddItemForm() {
                     </div>
 
                     <div className="flex flex-col">
-                        <label className="py-2 text-xl" htmlFor="author">Author</label>
+                        <label className="py-2 text-xl" htmlFor="author">
+                            Author <span className="text-red-500" aria-hidden="true">*</span>
+                        </label>
                         <input className="border-2 rounded-sm px-2 w-fit"
                             type="text"
                             id="author"
@@ -246,7 +250,7 @@ export default function AddItemForm() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center py-2">
                     <fieldset>
-                        <legend className="py-2 text-xl">Status (Optional)</legend>
+                        <legend className="py-2 text-xl">Status</legend>
                         <div className="flex items-center gap-3 pt-1">
                             <label htmlFor="status">I have read this book:</label>
                             <input className="w-5 h-5 cursor-pointer" type="checkbox" id="status" name="status" />
@@ -254,7 +258,7 @@ export default function AddItemForm() {
                     </fieldset>
 
                     <fieldset>
-                        <legend className="py-2 text-xl">Your rating (Optional)</legend>
+                        <legend className="py-2 text-xl">Your rating</legend>
 
                         <div className="flex gap-1 pt-1" role="radiogroup" aria-label="Your rating">
                         {[1, 2, 3, 4, 5].map((star) => (
@@ -291,7 +295,7 @@ export default function AddItemForm() {
                     </fieldset>
                 </div>
 
-                <label className="py-2 text-xl" htmlFor="review">Review (Optional)</label>
+                <label className="py-2 text-xl" htmlFor="review">Review</label>
                 <textarea className="col-span-full border-2 rounded-sm px-2" id="review" name="review" minLength={0} maxLength={200} 
                     placeholder="Write a review (up to 200 characters)">
                 </textarea>

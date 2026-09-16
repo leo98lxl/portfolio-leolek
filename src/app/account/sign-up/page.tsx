@@ -20,9 +20,9 @@ export default function SignUp() {
         priority
       />
     </div>
-    <main className="relative z-10 grid border-4 border-black dark:border-white bg-white dark:bg-gray-800 shadow-2xl rounded-xl w-fit m-4 px-8 py-4">
+    <main className="relative z-10 grid border-4 border-black dark:border-white bg-white dark:bg-gray-800 shadow-2xl rounded-xl w-full max-w-md mx-4 px-8 py-4">
       <div className="py-2 text-center">
-        <h2 className="text-3xl py-4">Create account</h2>
+        <h2 className="text-3xl py-4">Create Account</h2>
         <p>Please fill in the required fields to create your Shelfy account.</p>
       </div>
 
@@ -40,9 +40,9 @@ export default function SignUp() {
 
       <form action={formAction}>
         <div className="grid py-2">
-          <label className="py-2 text-xl" htmlFor="name">Your Name (optional)</label>
+          <label className="py-2 text-xl" htmlFor="name">Your Name</label>
           <input 
-            className="border-2 rounded-sm p-2 w-fit" 
+            className="border-2 rounded-sm p-2 w-fill" 
             type="text" 
             id="name" 
             name="name" 
@@ -51,9 +51,11 @@ export default function SignUp() {
         </div>
 
         <div className="grid py-2">
-          <label className="py-2 text-xl" htmlFor="email">Your Email</label>
+          <label className="py-2 text-xl" htmlFor="email">
+            Your Email <span className="text-red-500" aria-hidden="true">*</span>
+          </label>
           <input 
-            className="border-2 rounded-sm p-2 w-fit" 
+            className="border-2 rounded-sm p-2 w-fill" 
             type="email" 
             id="email" 
             name="email" 
@@ -63,9 +65,11 @@ export default function SignUp() {
         </div>
 
         <div className="grid py-2">
-          <label className="py-2 text-xl" htmlFor="password">Your Password</label>
+          <label className="py-2 text-xl" htmlFor="password">
+            Your Password <span className="text-red-500" aria-hidden="true">*</span>
+          </label>
           <input
-            className="border-2 rounded-sm p-2 w-fit"
+            className="border-2 rounded-sm p-2 w-fill"
             type="password"
             id="password"
             name="password"
@@ -76,9 +80,11 @@ export default function SignUp() {
         </div>
 
         <div className="grid py-2">
-          <label className="py-2 text-xl" htmlFor="confirm-password">Confirm Password</label>
+          <label className="py-2 text-xl" htmlFor="confirm-password">
+            Confirm Password <span className="text-red-500" aria-hidden="true">*</span>
+          </label>
           <input
-            className="border-2 rounded-sm p-2 w-fit"
+            className="border-2 rounded-sm p-2 w-fill"
             type="password"
             id="confirm-password"
             name="confirm-password"
@@ -89,11 +95,11 @@ export default function SignUp() {
         </div>
 
         <div className="flex justify-center gap-6 pt-6">
-          <button className="border-2 border-indigo-800 bg-blue-400 hover:bg-blue-600 text-black hover:text-white hover:border-white rounded-lg text-xl px-6 w-fit hover:cursor-pointer transition-colors" 
+          <button className="border-2 border-indigo-800 bg-blue-400 hover:bg-blue-600 text-black hover:text-white hover:border-white rounded-lg text-lg px-6 w-fit min-w-45 hover:cursor-pointer transition-colors" 
             type="submit" disabled={isPending}>
             {isPending ? 'Creating Account...' : 'Create Account'}
           </button>
-          <Link className="border-2 border-red-800 bg-red-400 hover:bg-red-800 text-black hover:text-white hover:border-white rounded-lg text-xl px-6 w-fit hover:cursor-pointer transition-colors text-center"
+          <Link className="border-2 border-red-800 bg-red-400 hover:bg-red-800 text-black hover:text-white hover:border-white rounded-lg text-lg px-6 w-fit hover:cursor-pointer transition-colors text-center"
             href="/">Cancel</Link>
         </div>
       </form>
