@@ -19,17 +19,18 @@ This application does the following:
 - **Add Item** – Search for a book, auto‑fill title/author/year, optionally set *read*, *rating* (5‑star), and *review*. Hover a book to see user reviews.
 - **Footer** – "Contact us!" link opens a mailto: link to the author of this project.
 
-## Design comparison
-I know, I suck at drawing.
+## Screenshots
+| Light mode | Dark mode |
+|------------|-----------|
+| ![Light mode](public/screenshot-shelf-light.png "Shelfy in light mode") | ![Dark mode](public/screenshot-shelf.png "Shelfy in dark mode") |
 
+## Design comparison
 | Sketch (wireframe) | Final implementation |
 |--------------------|----------------------|
 | ![Welcome sketch](docs/sketches/media-shelf-welcome-page.jpg) | ![Welcome screenshot (mobile)](public/screenshot-welcome-mobile.png) |
 | ![Add item sketch](docs/sketches/add-item-results-sketch.png) | ![Add item screenshot](public/screenshot-search.png) |
 
-## Screenshots
-![Light mode](public/screenshot-shelf-light.png "Shelfy in light mode")
-![Dark mode](public/screenshot-shelf.png "Shelfy in dark mode")
+I know, I suck at drawing.
 
 ## Technologies
 **Frontend**
