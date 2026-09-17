@@ -26,7 +26,11 @@ export default function SortByDirection() {
 
     return (
         <div>
-            <select value={current} onChange={(e) => handleSortDirection(e.target.value)}> 
+            <select
+                value={current}
+                onChange={(e) => handleSortDirection(e.target.value)}
+                className="bg-slate-100 dark:bg-zinc-800 text-slate-800 dark:text-zinc-200 text-xs sm:text-sm font-medium rounded-xl px-3 py-1.5 border border-slate-300 dark:border-zinc-700 cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-blue-500 transition-colors"
+            >
                 <option value={""} disabled>
                     Direction:
                 </option>

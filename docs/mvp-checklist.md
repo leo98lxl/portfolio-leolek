@@ -68,8 +68,8 @@ core.
 - [X] Confirm all three are optional (editing is a stretch goal)
 
 ### Visual polish
-- [ ] Welcome page: background graphic + centered Create Account/Log In
-- [ ] Empty slot hover/tap highlight + plus-sign Add button
+- [X] Welcome page: background graphic + centered Create Account/Log In
+- [X] Empty slot hover/tap highlight + plus-sign Add button
 - [ ] Filled slot color reflects the book cover's actual color (dominant
       color extraction from cover image)
 - [ ] Responsive check: shelf and forms work on a mobile-width screen
