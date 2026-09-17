@@ -30,7 +30,7 @@ export default function Home() {
           <div className="absolute inset-1 bg-slate-900/20 dark:bg-black/50 blur-lg rounded-2xl -z-10" />
 
           {/* Screenshot */}
-          <picture>
+          <picture className="block w-full">
             <source
               media="(prefers-color-scheme: dark)"
               srcSet="/screenshot-shelf.png"
@@ -38,9 +38,11 @@ export default function Home() {
             <Image
               src="/screenshot-shelf-light.png"
               alt="Example image showing Shelfy layout"
-              width={1280}
-              height={720}
-              className="w-full h-auto object-cover rounded-xl shadow-md"
+              width={777}
+              height={388}
+              sizes="(max-width: 768px) 100vw, 60vw"
+              className="w-full h-auto object-cover rounded-xl shadow-md block"
+              style={{ aspectRatio: "777 / 388" }}
               priority
             />
           </picture>

@@ -34,29 +34,29 @@ This is the working document for the remaining sprint. The goal is to finish the
 ## Today’s task breakdown
 
 ### 1) Layout and responsive stability
-- [ ] Check all pages use a balanced min-height layout
-- [ ] Ensure the footer sits at the bottom rather than covering content
-- [ ] Confirm the shelf still looks usable on narrow screens
-- [ ] Test text wrapping, button overflow, and spacing issues
+- [X] Check all pages use a balanced min-height layout
+- [X] Ensure the footer sits at the bottom rather than covering content
+- [X] Confirm the shelf still looks usable on narrow screens
+- [X] Test text wrapping, button overflow, and spacing issues
 
 ### 2) Small CSS and form fixes
-- [ ] Replace w-fill with w-full where needed
-- [ ] Check input and button widths on mobile
-- [ ] Confirm labels and buttons stay aligned on all auth pages
-- [ ] Remove any obvious visual inconsistencies in forms
+- [X] Replace w-fill with w-full where needed
+- [X] Check input and button widths on mobile
+- [X] Confirm labels and buttons stay aligned on all auth pages
+- [X] Remove any obvious visual inconsistencies in forms
 
 ### 3) Visual polish pass
-- [ ] Make the CTA buttons look consistent across pages
-- [ ] Make the add-book button and shelf cards feel more intentional
-- [ ] Improve spacing and shadows in a restrained, consistent way
-- [ ] Keep all changes small and easy to test
+- [X] Make the CTA buttons look consistent across pages
+- [X] Make the add-book button and shelf cards feel more intentional
+- [X] Improve spacing and shadows in a restrained, consistent way
+- [X] Keep all changes small and easy to test
 
 ### 4) Debugging and QA pass
-- [ ] Run the app locally and test the full sign-up/login flow
-- [ ] Add a book and confirm it appears in the shelf
-- [ ] Check sorting and layout after adding multiple items
-- [ ] Test at least one mobile viewport and one desktop viewport
-- [ ] Fix only the issues that affect usability or visual quality
+- [X] Run the app locally and test the full sign-up/login flow
+- [X] Add a book and confirm it appears in the shelf
+- [X] Check sorting and layout after adding multiple items
+- [X] Test at least one mobile viewport and one desktop viewport
+- [X] Fix only the issues that affect usability or visual quality
 
 ---
 
@@ -91,12 +91,12 @@ This is the working document for the remaining sprint. The goal is to finish the
 - [X] Welcome page background and centered CTA layout
 - [X] Empty-slot hover/tap highlight and add button
 - [ ] Filled slot color reflects the cover image color
-- [ ] Responsive check: shelf and forms work on mobile-width screens
+- [X] Responsive check: shelf and forms work on mobile-width screens
 
 ### Buffer & wrap-up
-- [ ] Fix issues discovered during end-to-end testing
-- [ ] Confirm no critical layout breakages on mobile
-- [ ] Leave room for debugging and final verification before the deadline
+- [X] Fix issues discovered during end-to-end testing
+- [X] Confirm no critical layout breakages on mobile
+- [X] Leave room for debugging and final verification before the deadline
 
 ---
 
@@ -111,11 +111,11 @@ This is the working document for the remaining sprint. The goal is to finish the
 
 ## End-of-day sign-off
 Before stopping today, confirm all of the following:
-- [ ] The app builds successfully
-- [ ] The sign-up/login flow works
-- [ ] A book can be added and shown on the shelf
-- [ ] The page still looks solid on a mobile viewport
-- [ ] No critical layout regressions remain
-- [ ] You have buffer time left for debugging and final QA
+- [X] The app builds successfully
+- [X] The sign-up/login flow works
+- [X] A book can be added and shown on the shelf
+- [X] The page still looks solid on a mobile viewport
+- [X] No critical layout regressions remain
+- [X] You have buffer time left for debugging and final QA
 
 If a task takes longer than 30–45 minutes without a clear fix, stop, document the issue, and move to the next highest-priority item.
