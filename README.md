@@ -16,7 +16,7 @@ This application does the following:
 - **Sign up** – Create an account (username optional). A confirmation email from Supabase Auth is sent; confirming redirects back to Home.
 - **Log in** – Access *Your Shelfy* after authentication.
 - **Your Shelfy** – View your personal bookshelf, add items, and sort by author, title, read/unread, etc. Log out returns you to Home.
-- **Add Item** – Search for a book, auto‑fill title/author/year, optionally set *read*, *rating* (5‑star), and *review*. Hover a book to see user reviews.
+- **Add Item** – Search for a book using Open Library's Search API, auto‑fill title/author/year, optionally set *read*, *rating* (5‑star), and *review*. Hover a book to see user reviews.
 - **Footer** – "Contact us!" link opens a mailto: link to the author of this project.
 
 ## Screenshots
@@ -42,7 +42,8 @@ I know, I suck at drawing.
 - Lucide icons (https://lucide.dev/)
 
 **Backend / Services**
-- Supabase (Auth & database)
+- Supabase - Auth & database
+- Open Library Search API - book search and metadata (https://openlibrary.org/dev/docs/api/search)
 - AI agents (Claude for planning, Copilot, Antigravity for vibe coding, bug fixes, and code reviews)
 
 ## Requirements
